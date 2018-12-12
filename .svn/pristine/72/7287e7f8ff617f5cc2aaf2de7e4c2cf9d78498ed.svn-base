@@ -1,0 +1,446 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>404</title>
+    <meta name="keywords" />
+    <meta id="description" name="description" />
+    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- common static files -->
+    <link rel="stylesheet" href="//source.vipabc.com/Ext/css/fonts/font-awesome-4.4.0/css/font-awesome.min.css">
+
+    
+
+    <link rel="stylesheet" href="/Content/css/v-jr.min.css?version=2018121001">
+    <script type="text/javascript" src="//source.vipabc.com/Ext/js/lib/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery.xdomainrequest.min.js"></script>
+</head>
+<body>
+    <div class="v-jr-slide-wrap">
+        <!-- slide on mobile -->
+        <div class="v-jr-slide">
+            <ul>
+                <li><a href="/">首页</a></li>
+                <li><a href="/english" target="_blank">青少年英语</a></li>
+                
+                <li><a href="/maths" target="_blank">青少年数学</a></li>
+
+                <li><a href="/testprep">托福雅思</a></li>
+                <li><a href="/Home/AboutUs">关于我们</a></li>
+                <li class="_nbsp"><br></li>
+                        <li><a href="javascript:;" class="js-slide-target-linkForm">免费体验课程</a></li>
+                    <li><a onclick="OpenModalDialog(this);">在线咨询</a></li>
+                    <li><a href="Tel:4009303030">4009-30-30-30</a></li>
+            </ul>
+        </div>
+        <!-- slide on mobile -->
+        <div class="v-jr-slide-box" id="js-slide-box">
+            <!-- header -->
+            <div class="v-jr-header">
+                <div class="v-jr-center">
+                    <ul>
+                        <li class="v-jr-header-icons">
+                            
+                            <div class="v-jr-cs" title="在线客服">
+                                <a href="javascript:OpenModalDialog(this);" title="在线客服" onclick="ga('send', 'topbar', 'vipjr', 'click', 'customer_contact');">
+                                    <img class="_static" src="//source.vipabc.com/ext/images/website/vjr/v1/common/icon-online-service.png" alt="" title="在线客服">
+                                    <img class="_hover" src="//source.vipabc.com/ext/images/website/vjr/v1/common/icon-online-service-hover.png" alt="" title="在线客服">
+                                </a>
+                            </div>
+                            <div class="v-jr-download js-top-show-handle">
+                                <a href="javascript:;" onclick="ga('send', 'topbar', 'vipjr', 'click', 'vipjrHD_App');">
+                                    <img class="_static" src="//source.vipabc.com/ext/images/website/vjr/v1/common/icon-mobile.png" alt="vipabc">
+                                    <img class="_hover" src="//source.vipabc.com/ext/images/website/vjr/v1/common/icon-mobile-hover.png" alt="">
+                                </a>
+                                <div class="v-jr-img-holder">
+                                    <p>扫码下载 vipjr HD</p>
+                                    <img src="//source.vipabc.com/ext/images/website/vjr/v1/common/appDownLoad-v3.jpg" alt="apps">
+                                </div>
+                            </div>
+                        </li>
+                        <li class="v-jr-header-links">
+                            <span>|</span>
+                            <a href="//www.vipabc.com?drainagebox=false" target="_blank" onclick="ga('send', 'topbar', 'vipjr', 'click', 'vipabc_website');">成人英语</a>
+                            <a href="//lp.vipabc.com/program/linkage_page/CorporationTrainning/index.asp?fromwhere=AfivuywBa2" target="_blank" onclick="ga('send', 'topbar', 'vipjr', 'click', 'CorporationTrainning');">企业用户</a>
+                            <span>|</span>
+                            <a href="//junior.vipabc.com/" target="_blank" onclick="ga('send', 'topbar', 'vipjr', 'click', 'oldversion');">旧版官网</a>
+                            <span>|</span>
+                        </li>
+                        <li class="v-jr-header-tel">
+                            <a href="#">
+                                <img src="//source.vipabc.com/ext/images/website/vjr/v1/common/icon-header-tel.png" alt="tel">
+                                <span>4009-30-30-30</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- header -->
+            <!-- nav mobile -->
+            <div class="v-jr-nav v-jr-mobile v-jr-pad">
+                <div class="v-jr-nav-bar" id="js-slide-bar">
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                </div>
+                <div class="v-jr-nav-logo">
+                    <a href="/" onclick="ga('send', 'event', 'nav', 'click', 'nav_logo');">
+                        <img src="//source.vipabc.com/ext/images/website/vjr/logo_jr.png" alt="vipjr官网">
+                        <!-- <span><em>|</em>&nbsp;青少年英语</span> -->
+                    </a>
+                </div>
+                <div class="v-jr-nav-passport">
+                    <a href="/Home/MobileSignIn" class="v-jr-account" onclick="ga('send', 'event', 'topbtn', 'click', 'topbtn_login');"></a>
+                </div>
+            </div>
+            <!-- nav mobile -->
+            <!-- nav pc -->
+            <div class="v-jr-nav v-jr-pc" id="js-nav">
+                <div class="v-jr-center">
+                    <div class="v-jr-nav-logo">
+                        <a href="/" onclick="ga('send', 'event', 'nav', 'click', 'nav_logo');">
+                            <img src="//source.vipabc.com/ext/images/website/vjr/logo_jr_mini.png" alt="vipjr官网">
+                        </a>
+                    </div>
+                    <div class="v-jr-nav-links v-jr-fl">
+
+                                <a href="/" onclick="ga('send', 'event', 'nav', 'click', 'nav_index');">首页</a>
+
+                        <a href="/english" target="_blank" onclick="ga('send', 'event', 'nav', 'click', 'nav_english');">青少年英语</a>
+                        
+                        <a href="/maths" target="_blank" onclick="ga('send', 'event', 'nav', 'click', 'nav_maths');">青少年数学</a>
+                        <a href="/testprep" target="_blank" onclick="ga('send', 'event', 'nav', 'click', 'nav_testprep');">托福雅思</a>
+                                <a href="/Home/AboutUS" onclick="ga('send', 'event', 'nav', 'click', 'nav_AboutVIPABC');">关于我们</a>
+
+                    </div>
+
+                        <div class="v-jr-nav-passport">
+                            <a href="/Customer/Register?sourcetype=vipjr-vipjr" class="v-jr-btn v-jr-btn-primary _cell" onclick="ga('send', 'event', 'topbtn', 'click', 'topbtn_register');">注册</a>
+                            <button class="v-jr-btn v-jr-btn-outline js-passport _cell" onclick="ga('send', 'event', 'topbtn', 'click', 'topbtn_login');">登录</button>
+                        </div>
+
+                </div>
+            </div>
+            <!-- nav pc end -->
+            
+
+<div class="v-jr-error js-cover">
+    <div class="_box" style="background-image: url('//source.vipabc.com/ext/images/website/vjr/v1/common/not-found-bg.png')">
+        <h1>404 !</h1>
+        <h3>您所访问的页面不存在</h3>
+        <p><span id="js-error-seconds">5</span>秒后将返回首页</p>
+    </div>
+</div>
+<script type="text/javascript">
+    (function (argument) {
+        var _timerLs = 5,
+			timer = null;
+        var $s = document.getElementById('js-error-seconds');
+
+        timer = setInterval(function (argument) {
+            if (_timerLs < 1) {
+                clearInterval(timer);
+                return window.location = "/";
+            }
+            _timerLs--;
+            $s.innerHTML = _timerLs;
+        }, 1000);
+    })();
+</script>
+
+            <!-- footer start -->
+
+<div class="v-jr-bottom-form v-jr-mobile" id="_flow-target-form">
+    <div class="v-jr-center v-jr-clear">
+        <div class="_left">
+            <table class="_vertical">
+                <tbody>
+                    <tr>
+                        <td>
+                            <h2>填写资料 免费体验课程</h2>
+                            <form action="" class="v-jr-linkForm js-common-form" autocomplete="off">
+                                <input type="hidden" name="fromwhere">
+                                <input type="hidden" name="isroster" value="1">
+                                <div class="v-jr-form-input">
+                                    <input type="text" name="name" placeholder="请输入学员姓名">
+                                </div>
+                                <div class="v-jr-form-select">
+                                    <select data-track="tk-age" class="age_area" name="age_area">
+                                        <option value="">学员年龄</option>
+                                        <option value="20">0-6岁</option>
+                                        <option value="21">7-9岁</option>
+                                        <option value="29">10-12岁</option>
+                                        <option value="30">13-15岁</option>
+                                        <option value="31">16-18岁</option>
+                                        <option value="24">18岁以上</option>
+                                    </select>
+                                </div>
+                                <div class="v-jr-form-input v-jr-form-global-tel v-jr-clear">
+                                    <input type="text" name="nation_code" value="+86" class="v-jr-fl">
+                                    <input type="text" name="nation_phone" placeholder="请输入家长手机号码" class="v-jr-fr">
+                                    <label class="meg-error _error-phone-target"></label>
+                                </div>
+                                <div class="v-jr-form-input">
+                                    <input type="text" name="mail" placeholder="请输入家长邮箱">
+                                </div>
+                                <div class="v-jr-form-btn">
+                                    <input class="form-submit button-animated t-btn-lg" type="button" value="立即报名">
+                                    <div class="_loading"></div>
+                                </div>
+                                <div class="v-jr-form-lock">
+                                    <span class="_icon"></span>
+                                    <a href="/About/PrivacySave" class="_link" target="_blank">隐私保护</a>
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="_right">
+            <img src="//source.vipabc.com/ext/images/website/vjr/v1/common/bottom-form-yao.png" alt="vipjr代言人姚明">
+        </div>
+    </div>
+</div>
+
+<div class="v-jr-flow js-flow">
+    <span class="_mobile-box"></span>
+    <div class="_min-box _short" onclick="ga('send', 'event', 'bubiao', 'click', 'yaoming_fubiao');"></div>
+    <div class="_max-box _long v-jr-flow-linkForm">
+        <span class="demo-icon icon-close _close" onclick="ga('send', 'event', 'bubiao', 'click', 'yaoming_fubiaoguanbi');"></span>
+        <div class="_head"></div>
+        <h2 class="_title">领取免费体验课</h2>
+        <form action="" class="js-common-form" autocomplete="off">
+            <input type="hidden" name="fromwhere">
+            <div class="v-jr-form-input">
+                <input type="text" name="name" placeholder="请输入学员姓名">
+            </div>
+            <div class="v-jr-form-select">
+                <select data-track="tk-age" class="age_area" name="age_area">
+                    <option value="">学员年龄</option>
+                    <option value="20">0-6岁</option>
+                    <option value="21">7-9岁</option>
+                    <option value="29">10-12岁</option>
+                    <option value="30">13-15岁</option>
+                    <option value="31">16-18岁</option>
+                    <option value="24">18岁以上</option>
+                </select>
+            </div>
+            <div class="v-jr-form-input v-jr-form-global-tel v-jr-clear">
+                <input type="text" name="nation_code" value="+86" class="v-jr-fl">
+                <input type="text" name="nation_phone" placeholder="请输入家长手机号码" class="v-jr-fr">
+                <label class="meg-error _error-phone-target"></label>
+            </div>
+            <div class="v-jr-form-input">
+                <input type="text" name="mail" placeholder="请输入家长邮箱">
+            </div>
+            <div class="_btn-box">
+                <button class="v-jr-btn" onclick="ga('send', 'event', 'bubiao', 'click', 'yaoming_fubiao_freetry');">
+                    <span>立即领取</span>
+                </button>
+                <div class="_loading"></div>
+            </div>
+            <div class="v-jr-form-lock">
+                <span class="_icon"></span>
+                <a href="/About/PrivacySave" class="_link" target="_blank" onclick="ga('send', 'event', 'bubiao', 'click', 'yaoming_fubiao_privacy');">隐私保护</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<table class="v-jr-modal-table" id="js-modal-linkForm">
+    <tbody>
+        <tr>
+            <td>
+                <div class="v-jr-modal-linkForm v-jr-clear">
+                    <span class="demo-icon icon-close _close" data-dismiss="modal"></span>
+                    <div class="_left">
+                        <h2>填写资料 免费体验课程</h2>
+                        <form action="" class="v-jr-linkForm js-common-form" autocomplete="off">
+                            <input type="hidden" name="fromwhere">
+                            <input type="hidden" name="isroster" value="1">
+                            <div class="v-jr-form-input">
+                                <input type="text" name="name" placeholder="请输入学员姓名">
+                            </div>
+                            <div class="v-jr-form-select">
+                                <select data-track="tk-age" class="age_area" name="age_area">
+                                    <option value="">学员年龄</option>
+                                    <option value="20">0-6岁</option>
+                                    <option value="21">7-9岁</option>
+                                    <option value="29">10-12岁</option>
+                                    <option value="30">13-15岁</option>
+                                    <option value="31">16-18岁</option>
+                                    <option value="24">18岁以上</option>
+                                </select>
+                            </div>
+                            <div class="v-jr-form-input v-jr-form-global-tel v-jr-clear">
+                                <input type="text" name="nation_code" value="+86" class="v-jr-fl">
+                                <input type="text" name="nation_phone" placeholder="请输入家长手机号码" class="v-jr-fr">
+                                <label class="meg-error _error-phone-target"></label>
+                            </div>
+                            <div class="v-jr-form-input">
+                                <input type="text" name="mail" placeholder="请输入家长邮箱">
+                            </div>
+                            <div class="v-jr-form-btn">
+                                <input class="form-submit button-animated t-btn-lg" type="button" value="立即报名">
+                                <div class="_loading"></div>
+                            </div>
+                            <div class="v-jr-form-lock">
+                                <span class="_icon"></span>
+                                <a href="/About/PrivacySave" class="_link" target="_blank">隐私保护</a>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="_right">
+                        <img src="//source.vipabc.com/ext/images/website/vjr/v1/common/bottom-form-yao.png" alt="vipjr代言人姚明">
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+            <!-- footer end -->
+            <!-- footer start -->
+
+<div class="v-jr-footer">
+    <div class="v-jr-center">
+        
+        <div class="_self-links v-jr-clear">
+            <a href="/">首页</a>
+            <span>|</span>
+            <a href="/About/ContactUs">联系我们</a>
+            <span>|</span>
+            <a href="/About/DownloadSoftware">软件中心</a>
+            <span>|</span>
+            <a href="//www.tutorabc.com.cn">成人英语</a>
+            <span>|</span>
+            <a href="//lp.tutorabc.com.cn/lpgs/fXYZCOoAnL/index.html?fromwhere=AfivuywBa2">企业用户</a>
+            <span>|</span>
+            <a href="//lp.vipjr.com/lpgs/pYZCpOcSJr/index.html">诚招加盟商</a>
+            
+        </div>
+        <div class="_friend-links v-jr-clear">
+            <span>友情链接：</span>
+                        <a href="https://programing.vipjr.com/" target="_blank">青少儿编程</a>
+                        <a href="http://www.didaedu.com/" target="_blank">滴答教育网</a>
+                        <a href="http://www.1248e.com/" target="_blank">儿童教育资源网</a>
+                        <a href="https://www.vipjr.com/" target="_blank">少儿英语口语</a>
+                        <a href="http://www.xuexi.la/" target="_blank">在线学习网</a>
+                        <a href="http://www.i21st.cn/" target="_blank">21英语</a>
+                        <a href="http://www.cetbus.com/" target="_blank">四六级成绩查询</a>
+                        <a href="https://www.vipjr.com/" target="_blank">儿童英语学习</a>
+                        <a href="http://www.enbus.cn/" target="_blank">英语阅读</a>
+                        <a href="http://music.tingroom.com/" target="_blank">外语歌曲站</a>
+                        <a href="http://wy.yuloo.com/" target="_blank">育路外语学习网</a>
+                        <a href="https://www.yixuela.com/" target="_blank">高中视频</a>
+                        <a href="http://www.tingliku.com/" target="_blank">听力库英语网</a>
+                        <a href="http://sh.yuloo.com/" target="_blank">上海教育培训</a>
+                        <a href="http://www.jiaoping.com/ " target="_blank">教评网</a>
+                        <a href="http://zujuan.xkw.com/" target="_blank">组卷网</a>
+                        <a href="http://emc.vipjr.com/" target="_blank">会员登录</a>
+
+        </div>
+        <div class="_auth-links v-jr-clear">
+
+            <!--
+            <a href="http://www.itrust.org.cn/Home/Index/itrust_certifi?wm=2679644979" rel="nofollow" target="_blank">
+                <img src="http://source.vipabc.com/ext/images/website/junior/common/footer-auth-001.png" alt="" height="20">
+                <span>中国互联网诚信联盟</span>
+            </a>
+            <a href="http://www.315online.com.cn/member/315120016.html" rel="nofollow" target="_blank">
+                <img src="http://source.vipabc.com/ext/images/website/junior/common/footer-auth-002.png" alt="" height="18">
+                <span>网上交易保障中心</span>
+            </a>
+            <a href="https://ss.knet.cn/verifyseal.dll?sn=e12040111010015948308104" rel="nofollow" target="_blank">
+                <img src="http://source.vipabc.com/ext/images/website/junior/common/footer-auth-003.png" alt="" height="20">
+                <span>可信网站认证</span>
+            </a>
+            <a href="https://search.szfw.org/cert/l/CX20120625001575001635" rel="nofollow" target="_blank">
+                <img src="http://source.vipabc.com/ext/images/website/junior/common/footer-auth-004.png" alt="" height="16">
+                <span>诚信网站认证</span>
+            </a>
+            <a href="http://www.anquan.org/authenticate/cert/?site=www.vipabc.com&at=business" key="553dfde858725379d18af6db" rel="nofollow" target="_blank">
+                <img src="http://source.vipabc.com/ext/images/website/junior/common/footer-auth-006.png" alt="" height="18">
+                <span>安全联盟</span>
+            </a>
+             -->
+        </div>
+        <div class="_copyright">
+            vipjr.com 版权所有 (2008- 2018) 翻印必究 | 本网站隶属 北京创意麦奇教育信息咨询有限公司 | 经营许可：京ICP备11004351号
+            <br>
+            Copyright © 2008-2018 vipjr. All rights reserved.
+        </div>
+    </div>
+</div>
+
+    <table class="v-jr-modal-table" id="js-modal-login">
+        <tbody>
+            <tr>
+                <td>
+                    <div class="v-jr-login-modal">
+                        <span class="demo-icon icon-close _close" data-dismiss="modal"></span>
+                        <h2 class="_title">
+                            <img src="//source.vipabc.com/ext/images/website/vjr/logo_jr.png" alt="">
+                        </h2>
+                        <div class="_form">
+                            <form id="js-login" autocomplete="off" method="post">
+                                <div class="v-jr-form-input _email">
+                                    <input type="text" name="Account" id="_register-account" placeholder="您注册时的E-mail账号">
+                                </div>
+                                <div class="v-jr-form-input _password">
+                                    <input type="password" name="Password" id="_register-password" placeholder="您的密码">
+                                </div>
+                                <div class="v-jr-form-agree v-jr-clear">
+                                    <div class="v-jr-fl _checkbox">
+                                        <div class="v-jr-form-checkbox">
+                                            <label for="_register-agree">
+                                                <input type="checkbox" name="agree" id="_register-agree">
+                                                下次自动登录（维持14日）
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="v-jr-fr _links">
+                                        <a href="/ForgotPassword" onclick="ga('send', 'event', 'topbtn', 'click', 'popup_forgetpwd');">忘记密码？</a>
+                                    </div>
+                                </div>
+                                <div style="line-height: 20px;color: #f65662;font-size: 12px;" id="js-login-error-msg"></div>
+                                <div class="v-jr-form-btn">
+                                    <input class="form-submit button-animated" type="submit" value="登录">
+                                    <div class="_loading"></div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+            <!-- footer end -->
+        </div>
+    </div>
+    <input type="hidden" value="http://member.vipjr.com" id="VJRLoginPostUrl">
+    <!-- scripts-->
+    <script type="text/javascript" src="/Content/js/modules/modal.js"></script>
+    <script type="text/javascript" src="/Content/js/modules/source.js?version=2018121001"></script>
+    <script type="text/javascript" src="/Content/js/modules/common_linkForm_api.js?version=2018121001"></script>
+    <script type="text/javascript" src="/Content/js/modules/common.js?version=2018121001"></script>
+    
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-88658715-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+</body>
+</html>

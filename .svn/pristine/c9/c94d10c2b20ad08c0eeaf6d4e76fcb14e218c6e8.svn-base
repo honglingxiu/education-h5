@@ -1,0 +1,44 @@
+<template>
+  <div>
+    <img v-lazy="require('./img/logo.png')" alt="vue" width="100%">
+    <h1>page 111</h1>
+    <h1>page 111</h1>
+    <h1>page 111</h1>
+    <h1>page 111</h1>
+    <h1>page 111</h1>
+    <h1>page 111</h1>
+    <h1>page 111</h1>
+    <h1>page 111</h1>
+    <h1>page 111</h1>
+    <h1>page 111</h1>
+    <h1 @click="toast()">toast</h1>
+    <h1 @click="loading()">loading</h1>
+    <img v-lazy="'https://source.vipabc.com/ext/images/website/vjr/v3/home/english.png?version=2018071109'" width="100%">
+    <img v-lazy="require('./img/baidu1.jpg')" width="100%">
+  </div>
+</template>
+
+<style src="./main.css" scoped></style>
+
+<script>
+export default {
+  data() {
+    return {
+
+    }
+  },
+  methods: {
+    toast() {
+      this.$toast('提示提示提示');
+    },
+    loading() {
+      this.$loading.open("加载中...");
+      setTimeout(() => {
+        this.$loading.close();
+      }, 3000);
+    }
+  }
+}
+</script>
+
+

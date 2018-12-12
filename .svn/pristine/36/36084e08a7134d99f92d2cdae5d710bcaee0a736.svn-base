@@ -1,0 +1,266 @@
+import Vue from 'vue';
+
+const vue = new Vue();
+
+export default {
+	install(Vue) {
+		if (Vue) {
+			Vue.prototype.$api = this;
+		}
+	},
+	env() {
+		if (process.env.NODE_ENV === "development") return "development";
+		if (window.location.href.includes('192.168')) return 'test';
+		return 'production'
+	},
+	apiUrl() {
+		if (this.env() === "development" || this.env() === 'test') {
+			return "http://192.168.218.185:8022/";
+		}
+		return "http://api.junjue888.com/";
+	},
+	ServiceProxy() {
+		if (this.env() === "development" || this.env() === 'test') {
+			return "http://192.168.218.164:20003/ServiceProxy.aspx";
+		}
+		return "http://transfer.liulianglf.com/ServiceProxy.aspx";
+	},
+	_vkcServer: null,
+	getVkcServer() {
+		if (!this._vkcServer) {
+			var servicePara = {
+				key: "jbfly",
+				containKey: true,
+				defExt: "",
+				url: this.ServiceProxy(),
+			};
+			if (window['jc']) {
+				this._vkcServer = window['jc'].createService(servicePara);
+				//console.log("init jc server", this._vkcServer);
+			};
+		}
+		return this._vkcServer
+	},
+	/**
+	 * vkc ajax post  统一处理失败情况，弹出后台给的失败msg
+	 * @param url  路径（不包括IP）
+	 * @param data  传的数据
+	 * @param getAllData  成功后是否返回所有数据
+	 * return 无getAllData 返回后台数据中data中的数据
+	 *        有getAllData 返回所有后台数据
+	 */
+	vkcPost(url, data, getAllData) {
+		return new Promise((resolve, reject) => {
+			this.getVkcServer().ajax(this.apiUrl() + url, data).done(res => {
+				// console.log(res);
+				if (res.Code == 100) {
+					if (!getAllData) {
+						if (res.Result.code === '0') {
+							return resolve(res.Result.data);
+						}
+						vue.$loading.close();
+						vue.$messagebox.alert(res.Result.msg);
+						return;
+					}
+					vue.$loading.close();
+					return resolve(res.Result);
+				} else {
+					vue.$loading.close();
+					vue.$messagebox.alert(res.Msg);
+				}
+			})
+		});
+	},
+	/**
+	 * 设置cookie
+	 * @param key  key
+	 * @param value 值
+	 * @param time  保存时间（天）
+	 */
+	setCookie(key, value, time) {
+		var cur = new Date();
+		cur.setTime(cur.getTime() + time * 24 * 3600 * 1000);
+		document.cookie = key + '=' + encodeURIComponent(value) + ';expires=' + (time ? cur.toGMTString() : '');
+	},
+	getCookie(key) {
+		var data = document.cookie;
+		var startIndex = data.indexOf(key + '=');
+		if (startIndex > -1) {
+			startIndex = startIndex + key.length + 1;
+			var endIndex = data.indexOf(';', startIndex);
+			endIndex = endIndex < 0 ? data.length : endIndex;
+			return decodeURIComponent(data.substring(startIndex, endIndex));
+		} else {
+			return '';
+		}
+	},
+	delCookie(key) {
+		var data = this.getCookie(key);
+		if (data !== false) this.setCookie(key, data, -1);
+	},
+	setSessionStorage(key, value) {
+		let str = window.JSON.stringify(value);
+		if (window.sessionStorage) {
+			window.sessionStorage.setItem(key, str);
+		}
+	},
+	getSessionStorage(key) {
+		var json = "";
+		if (window.sessionStorage) {
+			json = window.sessionStorage.getItem(key);
+			if (json) {
+				json = window.JSON.parse(json);
+			}
+		}
+		return json;
+	},
+	setLocalStorage(key, value) {
+		let str = window.JSON.stringify(value);
+		if (window.localStorage) {
+			window.localStorage.setItem(key, str);
+		}
+	},
+	getLocalStorage(key) {
+		var json = "";
+		if (window.localStorage) {
+			json = window.localStorage.getItem(key);
+			if (json) {
+				json = window.JSON.parse(json);
+			}
+		}
+		return json;
+	},
+	/**
+	 * 获取url参数值
+	 * @param name  name
+	 */
+	getUrlParam(name) {
+		var reg = new RegExp("(^|\\?|&)" + name + "=([^&|^#]*)");
+		var l = window.location.href;
+		var i = l.indexOf("?");
+		if (i < 0) return null;
+		var str = l.slice(i + 1, l.length);
+		if (str) {
+			var r = str.match(reg);
+			if (r) {
+				return decodeURIComponent(r[2]);
+			}
+		}
+		return null;
+	},
+	/**
+	 * 检查手机号是否合法
+	 * @param {String} phone 手机号
+	 */
+	checkMobile(phone) {
+		if ((/^1[0-9]{10}$/.test(phone))) return true;
+		return false;
+	},
+	/**
+	 * 检查姓名是否正确
+	 * @param {String} name 姓名
+	 */
+	checkName(name) {
+		// let reg = /^([a-zA-Z0-9\u4e00-\u9fa5\·]{1,10})$/;
+		let reg = /^([\u4e00-\u9fa5\·]{1,10})$/;
+		return reg.test(name)
+	},
+	checkEnglishName(englishName){
+		let reg=/^[a-zA-Z]+$/;
+    	return reg.test(englishName);
+	},
+	/**
+	 * 倒计时
+	 * @param  time  倒计时秒数
+	 * @param  tickFunc  每秒执行
+	 * @param  done     结束后回调
+	 */
+	countDown(time, tickFunc, done) {
+		let tick = () => {
+			setTimeout(() => {
+				if (time > 0) {
+					time--;
+					tickFunc(time);
+					tick();
+				} else {
+					done();
+					return;
+				}
+			}, 1000);
+		};
+		tick();
+	},
+	/**
+	 * 添加matomo统计
+	 * @param {Number} id matomo统计id
+	 */
+	addMatomo(id) {
+		let script = document.createElement("script"),
+			jscode = `
+    var _paq = _paq || [];
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//tj.liulianglf.com/";
+      _paq.push(['setTrackerUrl', u+'piwik.php']);
+      _paq.push(['setSiteId', '${id}']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+    })();
+    `;
+		script.type = "text/javascript";
+		try {
+			script.appendChild(document.createTextNode(jscode));
+		} catch (ex) {
+			script.text = code;
+		}
+		document.body.appendChild(script);
+	},
+	/**
+	 * 获取渠道id
+	 */
+	getIdList() {
+		if (window.idList) return;
+		let sStorageIdList = this.getSessionStorage("idList") || {};
+		window.idList = {};
+		idList.eventMarketId = this.getUrlParam("eventMarketId") || sStorageIdList.eventMarketId || "edu01";
+		idList.channelId = this.getUrlParam("id") || sStorageIdList.channelId || "2051";
+		idList.channelChildId = this.getUrlParam("channelChildId") || sStorageIdList.channelChildId || "";
+		this.setSessionStorage("idList", window.idList);
+	},
+	/**
+	 * 提交表单
+	 * @param formData  表单信息
+	 */
+	submitForm(formData) {
+		let param = {
+			eventMarketId: idList.eventMarketId, //活动id
+			channelId: idList.channelId, //一级渠道id
+			channelChildId: idList.channelChildId, //二级渠道id
+			ip: returnCitySN.cip,
+			...formData
+		}
+		return new Promise((resolve, reject) => {
+			this.vkcPost("supermarketloan/edu/apply", param).then(res => {
+				resolve(res);
+			});
+		});
+	},
+	/**
+	 * 获取验证码
+	 * @param phone  手机号
+	 */
+	getVerifyCode(phone) {
+		return new Promise((resolve, reject) => {
+			if (!this.checkMobile(phone)) {
+				vue.$toast("手机号码输入有误");
+				return;
+			};
+			vue.$loading.open();
+			this.vkcPost("supermarketloan/edu/getVerifyCode", { phone: phone }).then(res => {
+				resolve(res);
+				vue.$loading.close();
+			});
+		});
+	}
+}

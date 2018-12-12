@@ -1,0 +1,15 @@
+<template>
+  <div>
+    <h1>page 555</h1>
+  </div>
+</template>
+
+<style src="./main.css" scoped></style>
+
+<script>
+export default {
+
+}
+</script>
+
+
