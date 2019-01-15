@@ -1,0 +1,301 @@
+<template>
+    <div class="wrap_box">
+        <section class="clearfix" id="landing_shared_m_banner">
+            <img class="img-responsive" src="./img/banner.jpg"/>
+            <h3>
+                马上为孩子预约一节试听
+            </h3>
+            <div class="text-center">
+                <!--<iframe id="signupbox" class="pull-right" style="border: none; width: 100%; overflow: hidden; margin-top: 20px; height: 180px;" src="https://www.likeshuo.com/Landing/Shared/Signup?ViewMode=7&amp;title=&amp;subTitle=&amp;buttonname=%u7ACB%u5373%u9884%u7EA6&amp;count=22452&amp;audition=%u4F4D%u7528%u6237%u5DF2%u9884%u7EA6" scrolling="no">
+                </iframe>-->
+                <div class="form-wrapper baseline">
+                    <form>
+                        <ul>
+                            <li>
+                                <input type="text" maxlength="11" id="mobile" v-model="formData.phone" placeholder="输入手机号码" @input="mobileChange" @blur="setCustomPhone(formData.phone)">
+                            </li>
+                            <li class="yzm">
+                                <input type="text" v-model="formData.verifyCode" placeholder="请输入验证码" maxlength="6">
+                                <button type="button" class="btn-code btn-gray" :disabled="btnStatus" @click="transSMSCode">{{smsText}}</button>
+                            </li>
+                            <li class="username">
+                                <input type="text" v-model="formData.name" placeholder="请输入宝贝姓名" maxlength="6" @blur="setCustomName(formData.name)">
+                            </li>
+                            <li class="date">
+                                <input type="text" v-model="formData.age"  @click="popupVisible = !popupVisible" readonly placeholder="请选择宝贝年龄">
+                                <div class="select-age"></div>
+                            </li>
+                            <li class="free-btn" @click="submit">立即预约</li>
+                            <li class="appoinment"><span class="text-red">{{count}}</span>位用户已预约</li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="clear" id="pain">
+            <div class="Basism t-center">
+                <h3>1套课程，解决四大难题<br>让孩子的英语3倍速提升</h3>
+            </div>
+            <ul>
+                <li>
+                    <div class="tu">
+                        <img src="./img/1_1.jpg" alt="">
+                    </div>
+                    <div class="zi">
+                        <h2>培养阅读习惯, 告别阅读恐慌</h2>
+                        <p>遵循国际权威的牛津树英文分级阅读教材，线上1对1趣味指导，从读前读中,读后进行完整阅读模式的训练,让孩子告别阅读恐慌, 培养英文书阅读的学习习惯。</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="tu">
+                        <img src="./img/1_2.jpg" alt="">
+                    </div>
+                    <div class="zi">
+                        <h2>习得拼读技巧, 提升学习效率 </h2>
+                        <p>遵循儿童的认知规律和自然拼读的特色, 由浅入深, 解决孩子英语发音难、发不准音、记忆单词、拼写单词困难的问题，达到见词能读，听音能写的学习效果。</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="tu">
+                        <img src="./img/1_3.jpg" alt="">
+                    </div>
+                    <div class="zi">
+                        <h2>欧美外教1v1，练就地道口语</h2>
+                        <p>结合孩子现实生活应用中的表达薄弱点，设置主题场景式学习，用MAPS专业教学方法进行完整的主题口语集训，提升孩子口语表达的信心，让孩子大胆开口说！</p>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <section class="clear" id="two">
+            <div class="Basism t-center">
+                <h3>4大优势<br>让孩子从此爱学敢说</h3>
+            </div>
+            <ul>
+                <li>
+                    <img src="./img/2_1.jpg" alt="">
+                    <p>主题场景设计, 趣味动画视频，立体纯英学习环境，激发孩子学习兴趣，提升表达能力</p>
+                </li>
+                <li style="float: right">
+                    <img src="./img/2_2.jpg" alt="">
+                    <p>遵循原版教材, 同质同步美国课堂，文化自然渗透, 分阶训练，适应各阶段学习需要</p>
+                </li>
+                <li>
+                    <img src="./img/2_3.jpg" alt="">
+                    <p>欧美外教，地道发音，口语对练，高频互动引导，纠正中国儿童特有的发音问题</p>
+                </li>
+                <li style="float: right">
+                    <img src="./img/2_4.jpg" alt="">
+                    <p>全面培养学生口语力、阅读力、拼读力技能, 让孩子自主学习，建立“说”的信心</p>
+                </li>
+            </ul>
+        </section>
+
+        <section class="clear" id="three">
+            <div class="Basism t-center">
+                <h3>3种星球力<br>给孩子的英语学习3倍助力</h3>
+            </div>
+            <ul>
+                <li>
+                    <div class="tu">
+                        <img src="./img/3_1.jpg" alt="">
+                    </div>
+                    <div class="zi">
+                        <h2>拼读力课程</h2>
+                        <p>1.优质外教专业纠音，系统讲解常见发音错误<br>2.搞定连读、弱读、重读、浊化发音技巧<br>3.5节课学习长/短元音、尾音、浊辅音
+                        </p>
+                    </div>
+                </li>
+                <li>
+                    <div class="tu">
+                        <img src="./img/3_2.jpg" alt="">
+                    </div>
+                    <div class="zi">
+                        <h2>阅读力课程</h2>
+                        <p>1.遵循牛津树经典教材，保证学有所用<br>2.专业外教在线教学，权威的教学方法<br>3.5节课搞定阅读技巧，告别中式阅读思维
+                        </p>
+                    </div>
+                </li>
+                <li>
+                    <div class="tu">
+                        <img src="./img/3_3.jpg" alt="">
+                    </div>
+                    <div class="zi">
+                        <h2>口语力课程</h2>
+                        <p>1.连线欧美优质外教，全英浸入式学口语<br>2.MAPS权威教学法，讲学练玩，四位一体<br>3.5节课程，原版教材，权威输入英语
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <section class="clear" id="four">
+            <div class="Basism t-center">
+                <h3>此课程，适合这样的孩子</h3>
+            </div>
+            <img src="./img/4.jpg" alt="">
+        </section>
+        <mt-popup v-model="popupVisible" position="bottom">
+            <mt-picker :slots="ageList" ref="mtPickerAge" showToolbar>
+                <div class="picker-toolbar-title">
+                    <div class="usi-btn-cancel" @click="popupVisible = !popupVisible">取消</div>
+                    <div class="">选择年龄</div>
+                    <div class="usi-btn-sure" @click="onComfirmChange">确定</div>
+                </div>
+            </mt-picker>
+        </mt-popup>
+    </div>
+</template>
+<script>
+    import {Picker, Popup} from 'mint-ui';
+    export default {
+        data() {
+            return {
+                count:22452,
+                smsText: "发送验证码",
+                btnStatus: true,
+                timer:"",
+                formData: {
+                    verifyCode: "",
+                    phone: "",
+                    name: "",
+                    age: ""
+                },
+                popupVisible: false,//显示年龄选择框标识
+                ageList: [{
+                    values: ["4岁以下", "4岁", "5岁", "6岁", "7岁", "8岁", "9岁", "10岁", "11岁", "12岁", "12岁以上"],
+                    flex: 1,
+                    defaultIndex: 2,
+                    className: "one"
+                }]
+            }
+        },
+        methods: {
+            onComfirmChange() {
+                this.popupVisible = false;
+                this.formData.age = this.$refs.mtPickerAge.getValues()[0];
+                this.setCustomAge(this.formData.age);//上报年龄变量
+                this.$refs.mtPickerAge.setValues(["6岁"]);//将下拉年龄列表恢复初始值
+            },
+            setCustomPhone(val) {
+                if (val.length === 11) {
+                    if (/^1[0-9]{10}$/.test(val)) {
+                        _paq.push(["trackEvent", "自定义变量", "手机号码", val]);
+                    }
+                }
+            },
+            setCustomName(val) {
+                if (val) {
+                    _paq.push(["trackEvent", "自定义变量", "宝贝名字", val]);
+                }
+            },
+            setCustomAge(val) {
+                if (val) {
+                    _paq.push(["trackEvent", "自定义变量", "宝贝年龄", val]);
+                }
+            },
+            mobileChange() {
+                var t = /^[1][3,4,5,7,8][0-9]{9}$/;
+                var n = $("#mobile").val();
+                if (t.test(n) && n.length == 11) {
+                    if(this.timer!=""){
+                        return;
+                    }
+                    $(".btn-code").removeClass("btn-gray");
+                    this.btnStatus = false;//按钮可以点击
+                } else {
+                    $(".btn-code").addClass("btn-gray");
+                    this.btnStatus = true;
+                }
+            },
+            transSMSCode() {//获取验证码
+                if (this.btnStatus) {
+                    return;
+                } else {
+                    this.$api.getVerifyCode(this.formData.phone).then(res => {
+                        this.smsCount(10);
+                    })
+                }
+            },
+            smsCount(t) {//重置按钮
+                var r = () => {
+                    if (t > 0) {
+                        t -= 1;
+                        this.btnStatus = true;
+                        $(".btn-code").addClass("btn-gray");
+                        this.smsText = t + "s后获取";
+                    } else {
+                        clearInterval(this.timer);
+                        this.timer="";
+                        this.smsText = "获取验证码";
+                        if (/^[1][3,4,5,7,8][0-9]{9}$/.test(this.formData.phone)) {
+                            $(".btn-code").removeClass("btn-gray");
+                            this.btnStatus = false;
+                        }
+                    }
+                };
+                this.timer = setInterval(function () {
+                    r()
+                }, 1000)
+            },
+            checkInfo() {
+                if (!this.$api.checkMobile(this.formData.phone)) return "手机号输入有误";
+                if (!/^[0-9]{6}$/.test(this.formData.verifyCode)) return "验证码有误";
+                if (!this.$api.checkName(this.formData.name)) return "宝贝姓名输入有误";
+                if (this.formData.age == "") return "请选择宝贝年龄";
+                return true;
+            },
+            submit() {
+                var result = this.checkInfo();
+                if (result == true) {
+                    this.$api.submitForm(this.formData).then(res => {
+                        this.$loading.close();
+                        this.$success.open('0755');
+                        _paq.push(["trackEvent", "跳转成功页面", idList.channelName + "：" + idList.channelChildName]);
+                    });
+                } else {
+                    this.$toast(result);
+                }
+            }
+        },
+        mounted() {
+            document.title = "立刻说在线口语_在线英语口语_在线英语口语学习_英语口语学习网站";
+            this.$api.addMatomo(57);
+            var minutes=new Date()-new Date("2018-12-27 13:08:50");
+            this.count+=Math.floor(minutes/(1000*60*10));//每10分钟人数增加一个
+        },
+        components: {
+            "mt-picker": Picker,
+            "mt-popup": Popup
+        }
+    }
+</script>
+
+
+<style scoped lang="less">
+    @import "./reset.css";
+    @import './main.less';
+    .mint-popup {
+        width: 100%;
+        /deep/ .picker-item {
+            opacity: .4;
+            color: #000000;
+            &.picker-selected {
+                opacity: 1;
+            }
+        }
+        .picker-toolbar-title{
+            display:flex;
+            flex-direction:row;
+            justify-content: space-between;
+            height:42px;
+            line-height: 42px;
+            font-size: 17px;
+        }
+        .usi-btn-cancel, .usi-btn-sure {
+            color: #108ee9;
+            padding: 1px 15px;
+        }
+    }
+</style>

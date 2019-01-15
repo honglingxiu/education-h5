@@ -9,18 +9,20 @@ export default {
 		}
 	},
 	env() {
-		if (process.env.NODE_ENV === "development") return "development";
-		if (window.location.href.includes('test-api')) return 'test';
+		if (process.env.NODE_ENV === "development" || window.location.href.includes('192.168')) return "development";
+		if (window.location.href.includes('test-h5')) return 'test';
 		return 'production'
 	},
 	apiUrl() {
+		// return "http://192.168.218.185:8022/";
 		if (this.env() === "development") return "http://192.168.218.185:8022/";
 		if (this.env() === 'test') return "http://test-api.junjue888.com/";
 		return "http://api.junjue888.com/";
 	},
 	ServiceProxy() {
+		// return "http://192.168.218.164:20003/ServiceProxy.aspx";
 		if (this.env() === "development") return "http://192.168.218.164:20003/ServiceProxy.aspx";
-		if (this.env() === 'test') return "http://test-transfer.liulianglf.com";
+		if (this.env() === 'test') return "http://test-transfer.liulianglf.com/ServiceProxy.aspx";
 		return "http://transfer.liulianglf.com/ServiceProxy.aspx";
 	},
 	_vkcServer: null,
@@ -159,13 +161,13 @@ export default {
 	 * @param {String} name 姓名
 	 */
 	checkName(name) {
-		// let reg = /^([a-zA-Z0-9\u4e00-\u9fa5\·]{1,10})$/;
-		let reg = /^([\u4e00-\u9fa5\·]{1,10})$/;
+		let reg = /^([a-zA-Z0-9\u4e00-\u9fa5\·]{1,20})$/;
+		// let reg = /^([\u4e00-\u9fa5\·]{1,10})$/;
 		return reg.test(name)
 	},
-	checkEnglishName(englishName){
-		let reg=/^[a-zA-Z]+$/;
-    	return reg.test(englishName);
+	checkEnglishName(englishName) {
+		let reg = /^[a-zA-Z]+$/;
+		return reg.test(englishName);
 	},
 	/**
 	 * 倒计时
@@ -212,7 +214,7 @@ export default {
 		} catch (ex) {
 			script.text = code;
 		}
-		document.body.appendChild(script);
+		document.head.appendChild(script);
 	},
 	/**
 	 * 获取渠道id
@@ -235,9 +237,10 @@ export default {
 			eventMarketId: idList.eventMarketId, //活动id
 			channelId: idList.channelId, //一级渠道id
 			channelChildId: idList.channelChildId, //二级渠道id
-			ip: returnCitySN.cip,
+			ip: returnCitySN.cip || "",
 			...formData
 		}
+		// console.log(param);
 		return new Promise((resolve, reject) => {
 			this.vkcPost("supermarketloan/edu/apply", param).then(res => {
 				resolve(res);
@@ -255,10 +258,21 @@ export default {
 				return;
 			};
 			vue.$loading.open();
-			this.vkcPost("supermarketloan/edu/getVerifyCode", { phone: phone }).then(res => {
+			this.vkcPost("supermarketloan/edu/getVerifyCode", { phone: phone, eventMarketId: idList.eventMarketId }).then(res => {
 				resolve(res);
 				vue.$loading.close();
 			});
 		});
-	}
+	},
+    /**
+	 * 滚动到顶部
+	 * 用法：@click="$api.scrollToTop"
+     * @returns {boolean}
+     */
+    scrollToTop(){
+        $('body,html').animate({
+            scrollTop: 0
+        }, 1000);
+        return false;
+    }
 }

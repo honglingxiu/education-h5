@@ -1,0 +1,20 @@
+
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot?t=1545968628187'); /* IE9*/
+  src: url('iconfont.eot?t=1545968628187#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAARAAAsAAAAABoQAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAADMAAABCsP6z7U9TLzIAAAE8AAAARAAAAFY8uUg1Y21hcAAAAYAAAABLAAABcOdrtnNnbHlmAAABzAAAAIcAAACIWpth9mhlYWQAAAJUAAAALwAAADYTtr3qaGhlYQAAAoQAAAAcAAAAJAfeA4NobXR4AAACoAAAAAgAAAAICAAAAGxvY2EAAAKoAAAABgAAAAYARAAAbWF4cAAAArAAAAAgAAAAIAEPADBuYW1lAAAC0AAAAUUAAAJtPlT+fXBvc3QAAAQYAAAAJQAAADY7WERFeJxjYGRgYOBikGPQYWB0cfMJYeBgYGGAAJAMY05meiJQDMoDyrGAaQ4gZoOIAgCKIwNPAHicY2BkYWCcwMDKwMHUyXSGgYGhH0IzvmYwYuRgYGBiYGVmwAoC0lxTGByeOT9zZm7438AQw9zA0AAUZgTJAQDnnQxpeJxjYGBgZWBgYAZiHSBmYWBgDGFgZAABP6AoI1icmYELLM7CoARWwwISf+b8/z+MBPJZwCQDIxvDKOABkzJQHjisIJiBEQDMwAp1AHicY2BmYPi/hPkxcyIDN4M4gzIDAyM7m5q6qR2jPKOYCLMag7oZg7kYgzgbAzMfI7sco7gdo7keI9OcHfJmjIxm8jtkt57695GVlZH/1GlGPja2f59Ob3jDwvJmw8bXrKyvGT2yBOSVryrJC2QJ2/3zZGXkOw1TdfrfJ+Yq1tcbYaoB/YkpMAB4nGNgZGBgAOKDs/8FxfPbfGXgZmEAgRvee74g6P9LWBiYE4FcDgYmkCgAYtAMGAB4nGNgZGBgbvjfwBDDwgACQJKRARUwAQBHCAJrBAAAAAQAAAAAAAAAAEQAAAABAAAAAgAkAAMAAAAAAAIAAAAKAAoAAAD/AAAAAAAAeJxlj01OwzAQhV/6B6QSqqhgh+QFYgEo/RGrblhUavdddN+mTpsqiSPHrdQDcB6OwAk4AtyAO/BIJ5s2lsffvHljTwDc4Acejt8t95E9XDI7cg0XuBeuU38QbpBfhJto41W4Rf1N2MczpsJtdGF5g9e4YvaEd2EPHXwI13CNT+E69S/hBvlbuIk7/Aq30PHqwj7mXle4jUcv9sdWL5xeqeVBxaHJIpM5v4KZXu+Sha3S6pxrW8QmU4OgX0lTnWlb3VPs10PnIhVZk6oJqzpJjMqt2erQBRvn8lGvF4kehCblWGP+tsYCjnEFhSUOjDFCGGSIyujoO1Vm9K+xQ8Jee1Y9zed0WxTU/3OFAQL0z1xTurLSeTpPgT1fG1J1dCtuy56UNJFezUkSskJe1rZUQuoBNmVXjhF6XNGJPyhnSP8ACVpuyAAAAHicY2BigAAuBuyAiZGJkZmBJyk/LTEvvTgjsyAzj4EBAC2gBRoAAAA=') format('woff'),
+  url('iconfont.ttf?t=1545968628187') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1545968628187#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:60px;
+  font-style:normal;
+  font-weight: 700;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-bofangshipin:before { content: "\e643"; }
+

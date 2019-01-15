@@ -1,26 +1,29 @@
 <template>
   <div>
+    <div class="fb-header-info">恭喜您获得388元中小学短板专项提高课！</div>
     <img v-lazy="require('./img/banner.jpg')" alt="图片加载中" width="100%">
     <p class="fbc_staticText">提交后扫码添加“学习小助手”，有更多学习资料领取！</p>
     <div class="header-form">
       <input class="sName" type="text" v-model="formData.name" placeholder="孩子姓名" @blur="setCustomName(formData.name)">
       <input class="smsMobile form-number" type="phone" maxlength="11" v-model="formData.phone" placeholder="家长手机号" @input="setCustomPhone(formData.phone)">
       <div class="smsCode">
-        <input type="phone" maxlength="6" v-model="smsCode" placeholder="验证码">
+        <input type="phone" maxlength="6" v-model="formData.verifyCode" placeholder="验证码">
         <button class="getVerCode-btn" :disabled="disbtn" @click="getSmsCode()">{{codetxt}} {{time}}</button>
       </div>
       <select v-model="formData.grade" placeholder="孩子就读年级" @change="setCustomGrade(formData.grade)">
         <option value disabled selected hidden>孩子就读年级</option>
-        <option value="一年级">一年级</option>
+        <!-- <option value="一年级">一年级</option>
         <option value="二年级">二年级</option>
-        <option value="三年级">三年级</option>
+        <option value="三年级">三年级</option> -->
+        <option value="四年级以下">四年级以下</option>
         <option value="四年级">四年级</option>
         <option value="五年级">五年级</option>
         <option value="六年级">六年级</option>
-        <option value="七年级">七年级</option>
-        <option value="八年级">八年级</option>
-        <option value="九年级">九年级</option>
-        <option value="其他年级">其他年级</option>
+        <option value="初一">初一</option>
+        <option value="初二">初二</option>
+        <option value="初三">初三</option>
+        <option value="初三以上">初三以上</option>
+        <!-- <option value="其他年级">其他年级</option> -->
       </select>
       <span class="form-submit-btn" @click="submit()">免费申请试听</span>
     </div>
@@ -44,11 +47,11 @@ export default {
       disbtn: false,
       codetxt: "获取验证码",
       time: "",
-      smsCode: '',
       formData: {
         name: "",
         phone: "",
-        grade: ''
+        grade: '',
+        verifyCode: ""
       }
     }
   },
@@ -95,7 +98,7 @@ export default {
     checkInfo() {
       if (!this.$api.checkName(this.formData.name)) return "孩子姓名输入有误";
       if (!this.$api.checkMobile(this.formData.phone)) return "手机号码输入有误";
-      if (!/^[0-9]{6}$/.test(this.smsCode)) return "验证码有误";
+      if (!/^[0-9]{6}$/.test(this.formData.verifyCode)) return "验证码有误";
       if (this.formData.grade === "") return "请选择年级";
       return true;
     },

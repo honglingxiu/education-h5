@@ -1,0 +1,153 @@
+@charset "UTF-8";
+/*body, input, textarea, button, select, pre, tt, code, kbd, samp, optgroup, option {
+    font: 14px/1.5 PingFang SC, "Microsoft YaHei", tahoma, arial, "Hiragino Sans GB", sans-serif, Arial, Verdana, "宋体"
+}*/
+
+@commonHeight:.9rem;
+@commonRadius:.12rem;
+@commonIndent:.12rem;
+@commonTop:-1.5rem;
+@themeColor:#D92F38;
+/*设置placeholder的字体颜色*/
+/*设置placeholder的字体颜色*/
+::-webkit-input-placeholder {
+    color: rgba(0, 0, 0, 0.3)
+}
+
+:-moz-placeholder {
+    color: rgba(0, 0, 0, 0.3)
+}
+
+::-moz-placeholder {
+    color: rgba(0, 0, 0, 0.3)
+}
+
+:-ms-input-placeholder {
+    color: rgba(0, 0, 0, 0.3)
+}
+/*设置placeholder的字体颜色*/
+
+input, button,select {
+    border: 0;
+    outline: none;
+}
+
+input[type="text"] {
+    color: #333
+}
+h1, h2, h3, h4, h5, h6, input, textarea, button, select, small, b {
+    font-size: 95%;
+    font-weight: normal
+}
+.wrapper{
+    .bg{
+        width:100%;
+        img{
+            width: 100%;
+            display: block;
+        }
+        .form-wrapper{
+            width: 100%;
+            position: relative;
+            top:@commonTop;
+            .m_total_goods{
+                width: 6.2rem;
+                margin: 0 auto;
+                padding: .5rem .4rem .2rem;
+                background: #fff;
+                border-radius: 11px;
+                text-align: center;
+                box-shadow: 5px 5px 10px 0 rgba(116,116,116,.6), -5px 5px 10px 0 rgba(116,116,116,.6);
+                .h2_title{
+                    color: @themeColor;
+                    font-weight: 700;
+                    font-size: .35rem;
+                }
+                .info{
+                    line-height: .69333rem;
+                    font-size: .34rem;
+                    text-align: center;
+                    margin-bottom: .3rem;
+                    color: @themeColor;
+                    background: url("./img/Group1.png") no-repeat center;
+                    background-size: 100% 2px;
+                }
+                .goods_tab{
+                    width: 100%;
+                    .list{
+                        width: 100%;
+                        margin-bottom: .2rem;
+                        input{
+                            background-color: #F5F5F5;
+                            border-radius: @commonRadius;
+                            line-height: @commonHeight;
+                            height: @commonHeight;
+                            padding: .1rem 0;
+                            width: 100%;
+                            text-indent: @commonIndent;
+                            &.mobileInput{
+                                width: 65%;
+                                margin-right: 5%;
+                            }
+                        }
+                        .btn-code{
+                            width: 30%;
+                            height: @commonHeight;
+                            /*background-color: rgba(214,41,50,.9);*/
+                            background-color: @themeColor;
+                            border-radius: @commonRadius;
+                            color: white;
+                            font-size: .25rem;
+                            &.btn-gray{
+                                background-color: #bfbfbf;
+                            }
+                        }
+                        select{
+                            background: #F5F5F5 url("./img/form-arrow.png") no-repeat 95%  center;
+                            border-radius: @commonRadius;
+                            height: @commonHeight;
+                            line-height: @commonHeight;
+                            width: 100%;
+                            text-indent: @commonIndent;
+                            -webkit-appearance: none;
+                            /*&.change{
+                                background: #F5F5F5 url("./img/form-arrow-on.png") no-repeat 95%  center;
+                            }*/
+                        }
+                    }
+                }
+            }
+            .goods_btn{
+                margin-top: .4rem;
+                padding: .4rem;
+                .btn{
+                    width: 100%;
+                    height: .9rem;
+                    display: block;
+                    margin: 0 auto;
+                    font-size: .45rem;
+                    color: #fff;
+                    background-color: @themeColor;
+                    border-radius: 1rem;
+                }
+                .detail{
+                    color: #B9B9B9;
+                    font-size: .25rem;
+                    line-height: .4rem;
+                    text-align: center;
+                    margin: .17rem 0rem .2rem 0rem;
+                }
+            }
+        }
+
+    }
+    .common-img{
+        width: 100%;
+        display: block;
+        margin-top:@commonTop;
+        &.special-img{
+            margin-top:0;
+        }
+    }
+}
+

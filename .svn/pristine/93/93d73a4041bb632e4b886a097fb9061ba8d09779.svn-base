@@ -1,0 +1,262 @@
+@charset "utf-8";
+.form-wrapper{
+	width: 100%;
+	padding: 0 0.4rem;
+	form{
+		padding-top: 0.6rem;
+		font-size: 0.300rem;
+		ul{
+			li{
+				width: 100%;
+				max-width: 100%;
+				background-color: #fff;
+				margin-bottom: 0.200rem;
+				height: 0.800rem;
+				padding-left: 0.860rem;
+				border: 1px solid #ccc;
+				input{
+					height: .75rem;
+					width: 95%;
+					max-width: 95%;
+					&:disabled{
+						background-color: #ffffff;
+					}
+				}
+				&:first-child{
+					background-image: url("./img/phone.png");
+					background-position: 0.340rem center;
+					/*background-position: .2rem center;*/
+					background-repeat: no-repeat;
+					background-size: auto 0.440rem;
+					&+li{
+						position: relative;
+						background-image: url("./img/code.png");
+						background-position: 0.240rem center;
+						background-repeat: no-repeat;
+						background-size: auto 0.400rem;
+						.btn-code{
+							position: absolute;
+							right: .1rem;
+							top:50%;
+							margin-top: -.35rem;
+							width: 28%;
+							font-size: 0.3rem;
+							background-color:#EB6C68;
+							height: 0.700rem;
+							line-height: 0.700rem;
+							text-align: center;
+							color: #ffffff;
+							&.btn-gray{
+								background-color: #bfbfbf;
+							}
+						}
+					}
+				}
+				&.date{
+					background-image: url("./img/date.png");
+					background-position: 0.240rem center;
+					background-repeat: no-repeat;
+					background-size: auto 0.440rem;
+					position: relative;
+					.select-age{
+						position: absolute;
+						right: .25rem;
+						top:50%;
+						width: 15px;
+						height: 15px;
+						margin-top: -7.5px;
+						background-image: url("./img/arrow.svg");
+						background-size: contain;
+						background-repeat: no-repeat;
+						background-position: 50% 50%;
+					}
+				}
+				&.username{
+					background-image: url("./img/username.png");
+					background-position: 0.240rem center;
+					background-repeat: no-repeat;
+					background-size: auto 0.440rem;
+				}
+				&.free-btn{
+					margin-top: .3rem;
+					width: 100%;
+					height: 0.900rem;
+					line-height: 0.900rem;
+					text-align: center;
+					text-indent: -0.860rem;
+					line-height: 0.900rem;
+					border-radius: 4px;
+					font-size: 0.35rem;
+					color: #ffffff;
+					background-color: #ff5858;
+					margin-bottom: 0;
+				}
+				&.appoinment{
+					border: none;
+					text-align: center;
+					text-indent: -0.860rem;
+					line-height:0.800rem;
+					font-size: 12px;
+					color: #666;
+					.text-red{
+						color: #ff5858;
+					}
+				}
+			}
+		}
+	}
+}
+.wrap_box {
+	overflow: hidden
+}
+#landing_shared_m_banner>img.img-responsive{
+	width: 100%
+}
+#landing_shared_m_banner h3 {
+	color: #eb6c68;
+	font-size: .5rem;
+	text-align: center;
+	font-weight: bold;
+	margin-top: .4rem
+}
+.Basism {
+	width: 100%;
+	background-color: #eb6c68;
+	margin-top: .8rem;
+	margin-bottom: .6rem;
+}
+.Basism h3 {
+	display:block;
+	margin: 0 auto;
+	width: 80%;
+	font-size: .46rem;
+	line-height: .66rem;
+	color:#fff;
+	font-weight: bold;
+	padding: .4rem;
+	letter-spacing: .04rem
+}
+
+/* 1套课程，解决四大难题 */
+#pain ul {
+	width: 96%;
+	margin: 0 auto
+}
+#pain ul li {
+	width: 100%;
+	height: 2.1rem;
+	overflow: hidden;
+	margin-bottom: .4rem;
+	border-radius: .1rem;
+}
+#pain ul li .tu {
+	width: 40%;
+	float: left
+}
+#pain ul li .tu img {
+	width: 100%
+}
+#pain ul li .zi {
+	width: 60%;
+	height: 3rem;
+	float: right;
+	background-color: #eb6c68;
+}
+#pain ul li .zi h2 {
+	font-size: .31rem;
+	padding: 0;
+	font-weight: bold;
+	margin-top: .1rem;
+	margin-bottom: .2rem;
+	padding-left: .1rem
+}
+#pain ul li .zi p {
+	font-size: .18rem;
+	color: #fff;
+	padding-left: .1rem;
+	line-height: .3rem
+}
+
+
+/* 1套课程，解决四大难题 */
+#two ul {
+	width: 92%;
+	margin: 0 auto;
+	overflow: hidden;
+}
+#two ul li {
+	width: 48%;
+	height: 5.6rem;
+	float: left;
+	overflow: hidden;
+	margin-bottom: .1rem;
+	border-radius: .1rem;
+}
+#two ul li p {
+	color: #eb6c68;
+	margin-top: .2rem;
+	line-height: .3rem
+}
+
+/* 给孩子的英语学习3倍助力 */
+#three ul {
+	width: 94%;
+	margin: 0 auto
+}
+#three ul li {
+	overflow: hidden;
+	margin-bottom: .4rem;
+	padding: .1rem;
+	background-color: #eb6c68;
+}
+#three ul li .tu {
+	width: 30%;
+	float: left;
+
+}
+#three ul li .tu img {
+	width: 100%;
+	display: -webkit-box!important;
+    display: -webkit-flex!important;
+    display: -ms-flexbox!important;
+    display: flex!important;
+    box-sizing: border-box;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+#three ul li .zi {
+	width: 70%;
+	float: right;
+	
+}
+#three ul li .zi h2 {
+	font-size: .32rem;
+	padding: 0;
+	font-weight: bold;
+	margin-top: .2rem;
+	margin-bottom: .1rem;
+	padding-left: .2rem
+}
+#three ul li .zi p {
+	font-size: .2rem;
+	color: #fff;
+	padding-left: .2rem;
+	line-height: .36rem
+}
+
+#four img {
+	display: block;
+	width: 80%;
+	margin: 0 auto;
+	margin-bottom: .8rem
+}

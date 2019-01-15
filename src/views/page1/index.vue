@@ -14,21 +14,18 @@
                     <div class="goods_tab">
                         <div class="list">
                             <input class="mobileInput" v-model="formData.phone" type="text" placeholder="请输入手机号" @input="mobileChange" id="mobile" maxlength="11" @blur="setCustomPhone(formData.phone)"/>
-                            <button type="button" class="btn-code btn-gray" n-type="getSMS" a-type="getSMS" :disabled="btnStatus" @click="transSMSCode">{{smsText}}
+                            <button type="button" class="btn-code btn-gray" :disabled="btnStatus" @click="transSMSCode">{{smsText}}
                             </button>
-
-                            <!-- <input class="smallInp" n-type="zhName" type="text" placeholder="中文名"/>
-                            <input class="smallInp" n-type="enName" type="text" placeholder="英文名"/> -->
                         </div>
                         <div class="list">
-                            <input type="text" v-model="smsCode" id="smsCode" placeholder="输入验证码"/>
+                            <input type="text" v-model="formData.verifyCode" placeholder="输入验证码"/>
                         </div>
                         <div class="list smallInpList">
-                            <input class="smallInp" n-type="zhName" v-model="formData.name" type="text" placeholder="宝贝中文名" @blur="setCustomName(formData.name)"/>
-                            <input class="smallInp" n-type="enName" v-model="formData.englishName" type="text" placeholder="英文名" @blur="setCustomEnglishName(formData.englishName)"/>
+                            <input class="smallInp" v-model="formData.name" type="text" placeholder="宝贝中文名" @blur="setCustomName(formData.name)"/>
+                            <input class="smallInp"  v-model="formData.englishName" type="text" placeholder="英文名" @blur="setCustomEnglishName(formData.englishName)"/>
                         </div>
                         <div class="list">
-                            <select id="select" n-type="age" v-model="formData.age" @change="setCustomAge(formData.age)">
+                            <select id="select" v-model="formData.age" @change="setCustomAge(formData.age)">
                                 <option class="first" value="-1" selected>选择宝贝年龄</option>
                                 <option value="5岁以下">5岁以下</option>
                                 <option value="5岁">5岁</option>
@@ -41,7 +38,6 @@
                                 <option value="12岁">12岁</option>
                                 <option value="12岁以上">12岁以上</option>
                             </select>
-                            <!-- <input type="text" placeholder="选择宝贝年龄"/> -->
                         </div>
 
                     </div>
@@ -82,13 +78,7 @@
                         <a href="javascript:;" @click="playVideo">点击查看教材详细介绍</a>
                         <span class="icon-video"></span>
                     </div>
-                    <!--<div class="video-show video" id="playTwo" a-type="play" data-url="http://static.sayabc.com/video/OW_intro.mp4">
-                        <a href="javascript:;">点击查看教材详细介绍</a>
-                        <span class="icon-video"></span>
-                    </div>-->
                 </div>
-                <!--<div a-type="play" class="icon icon_right icon_two" v-lazy:background-image="require('./img/advantage_two_new.png')"
-                     data-url="http://static.sayabc.com/video/OW_intro.mp4"></div>-->
                 <div a-type="play" class="icon icon_right icon_two"
                      v-lazy:background-image="require('./img/advantage_two_new.png')"></div>
             </div>
@@ -176,9 +166,6 @@
             <div class="lessonIntro lessonIntroTMK" data-url="https://static.sayabc.com/video/SayABC_intro_2.mp4">
                 <h3></h3>
                 <h2>我们的课堂是什么样子的呢？</h2>
-                <!--<div id="play" class="video" a-type="play" v-lazy:background-image="require('./img/video-v1.png')">
-                    <div class="img" id="video-1"></div>
-                </div>-->
                  <div id="play" class="video"  v-lazy:background-image="require('./img/video-v1.png')"
                        @click="playVideo">
                      <div class="img" id="video-1"></div>
@@ -312,10 +299,6 @@
 
         </div>
         <!--/landpage-->
-
-        <!--<div class="btn-invite" id="btn2" style="display:none">
-            <button href="javascript:void(0)" n-type="immediately" a-type="immediately" class="btn">立即领课</button>
-        </div>-->
         <div class="btn-invite" id="btn2" style="display: none">
             <button href="javascript:void(0)" class="btn" @click="scrollToTop">立即领课</button>
         </div>
@@ -328,10 +311,11 @@
     export default {
         data() {
             return {
-                smsCode: "",
                 smsText:"获取验证码",
                 btnStatus:true,
+                timer:"",//定时器
                 formData:{
+                    verifyCode:"",
                     phone:"",
                     name:"",
                     englishName:"",
@@ -366,6 +350,9 @@
                 var t = /^[1][3,4,5,7,8][0-9]{9}$/;
                 var n = $("#mobile").val();
                 if (t.test(n) && n.length == 11) {
+                    if(this.timer!=""){
+                        return;
+                    }
                     $(".btn-code").removeClass("btn-gray");
                     this.btnStatus=false;//按钮可以点击
                 } else {
@@ -383,14 +370,15 @@
                 }
             },
             smsCount(t){//重置按钮
-                var n;
                 var r = () =>{
                     if (t > 0) {
                         t -= 1;
+                        this.btnStatus = true;
                         $(".btn-code").addClass("btn-gray");
                         this.smsText = t + "s后获取";
                     } else {
-                        clearInterval(n);
+                        clearInterval(this.timer);
+                        this.timer="";
                         this.smsText = "获取验证码";
                         if(/^[1][3,4,5,7,8][0-9]{9}$/.test(this.formData.phone)){
                             $(".btn-code").removeClass("btn-gray");
@@ -398,13 +386,13 @@
                         }
                     }
                 };
-                n = setInterval(function () {
+                this.timer = setInterval(function () {
                     r()
                 }, 1000)
             },
             checkInfo() {
                 if (!this.$api.checkMobile(this.formData.phone)) return "手机号码输入有误";
-                if (!/^[0-9]{6}$/.test(this.smsCode)) return "验证码有误";
+                if (!/^[0-9]{6}$/.test(this.formData.verifyCode)) return "验证码有误";
                 if (!this.$api.checkName(this.formData.name)) return "宝贝中文名输入有误";
                 if (!this.$api.checkEnglishName(this.formData.englishName)) return "宝贝英文名输入有误";
                 if (this.formData.age ==-1) return "请选择宝贝年龄";
@@ -514,9 +502,6 @@
                     }, 300)
                 }
 
-               /* var e = '<img src="' + 'static/img/lv5.png" class="imglist1 hide">    <img src="' + 'static/img/lv6.png" class="imglist1 hide">    <img src="' + 'static/img/lv0.png" class="imglist1 show">    <img src="' + 'static/img/lv1New.png" class="imglist1 hide">    <img src="' + 'static/img/lv2New.png" class="imglist1 hide">    <img src="' + 'static/img/lv3New.png" class="imglist1 hide">    <img src="' + 'static/img/lv04.png" class="imglist1 hide">    <img src="' + 'static/img/lv5.png" class="imglist1 hide">    <img src="' + 'static/img/lv6.png" class="imglist1 hide">    <img src="' + 'static/img/lv0.png" class="imglist1 hide">    <img src="' + 'static/img/lv1New.png" class="imglist1 hide">';
-                /!*var e = '<img src="'  + '/img/lv5.png" class="imglist1 hide">    <img src="'  + './img/lv6.png" class="imglist1 hide">    <img src="'  + './img/lv0.png" class="imglist1 show">    <img src="'  + './img/lv1New.png" class="imglist1 hide">    <img src="'  + './img/lv2New.png" class="imglist1 hide">    <img src="'  + './img/lv3New.png" class="imglist1 hide">    <img src="'  + './img/lv04.png" class="imglist1 hide">    <img src="'  + './img/lv5.png" class="imglist1 hide">    <img src="'  + './img/lv6.png" class="imglist1 hide">    <img src="'  + './img/lv0.png" class="imglist1 hide">    <img src="'  + './img/lv1New.png" class="imglist1 hide">';*!/
-                $("#img_list").html(e);*/
                 var t = $(".swiper_img")[0].childNodes;
                 var n = (t.length - 1) * 6.773 + 8.573;
                 $("#img_list").css({width: n + "rem", left: -6.773 * 2 + "rem"});

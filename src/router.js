@@ -32,6 +32,46 @@ export default new Router({
 			path: '/page5',
 			name: 'page5',
 			component: () => import('./views/page5')
-		}
+		},
+        {
+            path: '/page6',
+            name: 'page6',
+            component: () => import('./views/page6')
+        },
+        {
+            path: '/page7',
+            name: 'page7',
+            component: () => import('./views/page7')
+        },
+        {
+        	path: '/page8',
+            name: 'page8',
+            component: () => import('./views/page8')
+        },
+        {
+            path: '/page9',
+            name: 'page9',
+            component: () => import('./views/page9')
+        },
+        {
+            path: '/page10',
+            name: 'page10',
+            component: () => import('./views/page10')
+        },
+        {
+            path: '/page11',
+            name: 'page11',
+            component: () => import('./views/page11')
+        },
+        {
+            path: '/page12',
+            name: 'page12',
+            component: () => import('./views/page12')
+        },
+        {
+            path: '/page13',
+            name: 'page13',
+            component: () => import('./views/page13')
+        }
 	]
 })

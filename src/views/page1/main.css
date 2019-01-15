@@ -976,8 +976,12 @@ body {
     line-height: 1.17333rem;
     width: 6.93333rem;
     text-indent: .30667rem;
-    -webkit-appearance: none
+    -webkit-appearance: none;
+    background: whitesmoke url("./img/form-arrow.png") no-repeat 95%  center;
 }
+/*.m_total_goods .goods_tab .list select.change{
+    background: whitesmoke url("./img/form-arrow-on.png") no-repeat 95%  center;
+}*/
 
 .m_total_goods .goods_tab .list select:focus {
     outline: 0

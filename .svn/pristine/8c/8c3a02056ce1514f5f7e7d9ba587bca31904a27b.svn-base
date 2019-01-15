@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>能说会考当学霸！</title>
+  <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+  <script type="text/javascript">
+    !function(e,t){function n(){var n=s.getBoundingClientRect().width;t=t||540,n>t&&(n=t);var i=100*n/e;s.style.fontSize=i+"px"}var i,o=document,d=window,s=o.documentElement;n(),      d.addEventListener("resize",function(){clearTimeout(i),i=setTimeout(n,300)},!1),d.addEventListener("pageshow",function(e){e.persisted&&(clearTimeout(i),i=setTimeout(n,300))},!1),      d.addEventListener("DOMContentLoaded",function(){o.body.style.position="relative",o.body.style.fontSize="16px",o.body.style.margin="0 auto",o.body.style.maxWidth=t+"px"},!1)}(720,640);
+  </script>
+</head>
+
+<body>
+	<noscript>
+		<strong>We're sorry but edu-h5 doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+	</noscript>
+  <div id="app"></div>
+	<script src="static/js/jquery.min.js"></script>
+	<script src="static/js/JunboJsUI.min.js"></script>
+	<!-- built files will be auto injected -->
+</body>
+
+</html>

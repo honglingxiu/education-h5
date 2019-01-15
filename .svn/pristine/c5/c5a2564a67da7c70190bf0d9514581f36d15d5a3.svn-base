@@ -1,0 +1,478 @@
+<template>
+    <div>
+        <!-- banner -->
+        <div class="clearfix" id="landing_shared_m_banner">
+            <div class="container text-center">
+                <img class="img-responsive" src="./img/online.png" />
+                <h2 class="btitle">
+                    预约体验课 + 获取代金券
+                </h2>
+            </div>
+        </div>
+
+        <!-- 注册申请 -->
+        <div class="clearfix" id="landing_shared_m_register" v-cloak>
+            <div class="container text-center">
+                <div class="row text-left">
+                    <div>
+                        <div class="input-group">
+
+                            <input class="form-control"  v-model="formData.phone" id="mobile" type="tel" maxlength="11" placeholder="请输入手机号码" @input="mobileChange" @blur="setCustomPhone(formData.phone)" />
+                        </div>
+                    </div>
+                    <div>
+                        <div class="input-group">
+                            <input class="form-control" id="register_checkcode" v-model="formData.verifyCode" type="num" maxlength="6" placeholder="请输入验证码" />
+                            <span class="input-group-btn">
+                        <button class="btn btn-default no-border-radius btn-gray btn-code" :disabled="btnStatus" @click="transSMSCode">
+                            {{smsText}}
+                        </button>
+                    </span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="input-group">
+                            <input class="form-control" v-model="formData.name" placeholder="请输入您的姓名"  @blur="setCustomName(formData.name)"/>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="input-group">
+                            <input class="form-control" readonly  v-model="formData.age" placeholder="请选择年龄" @click="popupVisible = !popupVisible" />
+                            <div class="select-age"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="btn btn-default btn-block btn-flat" id="register_btn" type="submit" @click="submit">
+                            免费领取1对1试听课
+                        </button>
+                    </div>
+                    <p class="lks-promise">立刻说尊重并保护用户隐私，我们不会向任何第三方泄露您的个人信息。</p>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- 为什么在线学习更有效 -->
+        <div class="clearfix" id="landing_m_m301_reason">
+            <div class="container">
+                <h2 class="btitle">
+                    为什么在线学习更有效？
+                </h2>
+                <br>
+                <div class="media">
+                    <a class="media-left media-middle" href="javascript:void(0);">
+                        <img class="img-responsive" src="./img/computer.png" alt="">
+                    </a>
+                    <div class="media-body">
+                        <h4>在线课堂，想学，立刻能订</h4>
+                        <p>
+                            电脑/平板/手机，快至1小时，随订随上<br />真正以不变应万变，外教始终与你同步相伴，用TA的晚安陪你吃早餐
+                        </p>
+                    </div>
+                </div>
+                <div class="media">
+                    <a class="media-left media-middle" href="javascript:void(0);">
+                        <img class="img-responsive" src="./img/teacher.png" alt="">
+                    </a>
+                    <div class="media-body">
+                        <h4>全球外教，想约，一键呼叫</h4>
+                        <p>高颜值/纯欧美，24小时在线，美丽相约<br/>纯正发音地道表达，不仅是赏心悦目的课程，更是一次与世界的对话</p>
+                    </div>
+                </div>
+                <div class="media">
+                    <a class="media-left media-middle" href="javascript:void(0);">
+                        <img class="img-responsive" src="./img/book.png" alt="">
+                    </a>
+                    <div class="media-body">
+                        <h4>课堂内容，想挑，自由选择</h4>
+                        <p>选课件/选老师，365天不重复，按需学习<br/>专业控or颜值派，选你爱的；明天要用什么今天就学什么，即学即用</p>
+                    </div>
+                </div>
+                <a class="text-center experience" href="#" @click="scrollToTop">预约体验课</a>
+            </div>
+        </div>
+
+
+
+        <!-- 实力MAX,颜值MAX保证你的学习力UP -->
+        <div class="clearfix" id="landing_m_m301_teacher">
+            <div class="container">
+                <h2 class="btitle">
+                    实力max，颜值max<br>
+                    保证你的学习力up
+                </h2>
+                <h4 class="subtitle">
+            <span>
+                欧美外教 / TESOL证书 / 5年以上教龄
+            </span>
+                </h4>
+                <br>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="titem lksvideo" style="min-height: 200px;" v-lazy:background-image="require('./img/oleg.png')">
+
+                            <!-- 查看自我介绍 -->
+                            <a class="videostart" href="https://www.likeshuo.com/landing/shared/blockvideo?fileName=Oleg&amp;displayName=Oleg" data-toggle="modal" data-target="#lks_modal_sm">
+                                <!--<i class="iconfont icon-bofangshipin"></i>-->
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="titem lksvideo" style="min-height: 200px;" v-lazy:background-image="require('./img/oksana.png')">
+
+                            <!-- 查看自我介绍 -->
+                            <a class="videostart" href="https://www.likeshuo.com/landing/shared/blockvideo?fileName=Oksana&amp;displayName=Oksana" data-toggle="modal" data-target="#lks_modal_sm">
+                                <!--<i class="iconfont icon-bofangshipin"></i>-->
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="titem lksvideo" style="min-height: 200px;" v-lazy:background-image="require('./img/ewelina.png')">
+
+                            <!-- 查看自我介绍 -->
+                            <a class="videostart" href="https://www.likeshuo.com/landing/shared/blockvideo?fileName=Ewelina&amp;displayName=Ewelina" data-toggle="modal" data-target="#lks_modal_sm">
+                                <!--<i class="iconfont icon-bofangshipin"></i>-->
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="titem lksvideo" style="min-height: 200px;" v-lazy:background-image="require('./img/juraj.png')">
+
+                            <!-- 查看自我介绍 -->
+                            <a class="videostart" href="https://www.likeshuo.com/landing/shared/blockvideo?fileName=Juraj&amp;displayName=Juraj" data-toggle="modal" data-target="#lks_modal_sm">
+                                <!--<i class="iconfont icon-bofangshipin"></i>-->
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <a class="experience" href="#" @click="scrollToTop">
+                        马上约TA，试听体验<span class="glyphicon glyphicon-play"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 16+主题，2000+情境 -->
+        <div class="clearfix" id="landing_m_m301_course">
+            <div class="container">
+                <h2 class="btitle">
+                    16+主题，2000+情境
+                </h2>
+                <h4 class="subtitle">
+            <span>
+                定制化课程，智能化排课，学你想学
+            </span>
+                </h4>
+                <div class="text-center">
+                    <img class="img-responsive" src="./img/theme.png" alt="" />
+                </div>
+                <div class="row text-left">
+                    <div class="col-xs-3">
+                        <span class="glyphicon glyphicon-stop"></span>日常生活
+                    </div>
+                    <div class="col-xs-3">
+                        <span class="glyphicon glyphicon-stop"></span>职场工作
+                    </div>
+                    <div class="col-xs-3">
+                        <span class="glyphicon glyphicon-stop"></span>娱乐休闲
+                    </div>
+                    <div class="col-xs-3">
+                        <span class="glyphicon glyphicon-stop"></span>零基础入门
+                    </div>
+                </div>
+                <div class="text-center">
+                    <a class="experience" href="#" @click="scrollToTop">
+                        我要试听<span class="glyphicon glyphicon-play"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- 测测你的英语水平 -->
+        <div class="clearfix" id="landing_m_m301_level">
+            <div class="container text-center">
+                <h2 class="btitle">
+                    测测你的英语水平？
+                </h2>
+                <h4 class="subtitle">
+            <span>
+                我们将课程体系分为14个等级，每个级别均设严格的判断标准，让您清晰明确地了解自身英语水平。
+            </span>
+                </h4>
+                <div>
+                    <img class="img-responsive" src="./img/level.png" alt="" />
+                </div>
+                <div class="text-center">
+                    <a class="experience" href="#" @click="scrollToTop">
+                        申请测试<span class="glyphicon glyphicon-play"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- 退费 -->
+        <div class="clearfix" id="landing_m_m301_refund" >
+            <div class="container">
+                <h2 class="btitle">
+                    0风险，不满意随时退
+                </h2>
+                <br>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="refund-item">
+                            <img class="img-responsive" src="./img/refund1.png" alt="" />
+                            <h3>
+                                随时重修
+                            </h3>
+                            <div>
+                                如果你对课程、教师、学习平台的课后评价任意一项≤1分，该节课将会返还课时可进行重修，以保障你每一节课的学习效果。
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="refund-item">
+                            <img class="img-responsive" src="./img/refund2.png" alt="" />
+                            <h3>
+                                随时退费
+                            </h3>
+                            <div>
+                                如不满意，全程可随时退费。我们颠覆规则，只为让每一位英语学习者可以轻松无忧的做选择，用客户的选择检验我们的产品。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- 让我们一起，用英语为梦想助力！ -->
+       <!-- <div class="clearfix" id="landing_shared_m_together" v-lazy:background-image="require('./img/join.png')">
+            <div class="container text-center">
+                <h2>让我们一起，用英语为梦想助力！</h2>
+                <br>
+                <a class="btn btn-default zhiCustomBtn"
+                   href="javascript:;"
+                   target="_blank"
+                >在线咨询</a>
+                <a class="btn btn-default" href="#">加入我们</a>
+            </div>
+        </div>-->
+
+        <!-- 美联10年品牌里程 -->
+        <div class="clearfix" id="landing_m_m301_brand">
+            <div class="container text-center">
+                <img class="img-responsive" src="./img/brand.png" alt="" />
+                <a class="experience" href="#" @click="scrollToTop">
+                    加入我们，用英语为梦想加油<span class="glyphicon glyphicon-play"></span>
+                </a>
+            </div>
+        </div>
+
+
+        <!-- 扫码获取免费体验课测测你的英语水平 -->
+        <!--<div class="clearfix" id="landing_shared_m_code">
+            <div class="container text-center">
+                <img class="img-responsive" src="./img/code.png" alt="" />
+                <h4>
+                    预约体验课<br>
+                    获取代金券
+                </h4>
+            </div>
+        </div>-->
+
+
+
+
+
+        <div class="modal fade" id="lks_modal" data-backdrop="static" aria-hidden="true" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="lks_modal_lg" data-backdrop="static" aria-hidden="true" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="lks_modal_sm" data-backdrop="static" aria-hidden="true" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                </div>
+            </div>
+        </div>
+        <mt-popup v-model="popupVisible" position="bottom">
+            <mt-picker :slots="ageList" ref="mtPickerAge" showToolbar>
+                <div class="picker-toolbar-title">
+                    <div class="usi-btn-cancel" @click="popupVisible = !popupVisible">取消</div>
+                    <div class="">选择年龄</div>
+                    <div class="usi-btn-sure" @click="onComfirmChange">确定</div>
+                </div>
+            </mt-picker>
+        </mt-popup>
+    </div>
+</template>
+<script>
+    import {Picker, Popup} from 'mint-ui';
+    export default {
+        data() {
+            return {
+                smsText: "发送验证码",
+                btnStatus: true,
+                timer:"",//定时器
+                formData: {
+                    verifyCode: "",
+                    phone: "",
+                    name: "",
+                    age: ""
+                },
+                popupVisible: false,//显示年龄选择框标识
+                ageList: [{
+                    values: ["18岁以下", "18-25岁", "26-35岁", "36-46岁","46岁以上"],
+                    flex: 1,
+                    defaultIndex: 2,
+                    className: "one"
+                }]
+            }
+        },
+        methods: {
+            onComfirmChange() {
+                this.popupVisible = false;
+                this.formData.age = this.$refs.mtPickerAge.getValues()[0];
+                this.setCustomAge(this.formData.age);//上报年龄变量
+                this.$refs.mtPickerAge.setValues(["6岁"]);//将下拉年龄列表恢复初始值
+            },
+            setCustomPhone(val) {
+                if (val.length === 11) {
+                    if (/^1[0-9]{10}$/.test(val)) {
+                        _paq.push(["trackEvent", "自定义变量", "手机号码", val]);
+                    }
+                }
+            },
+            setCustomName(val) {
+                if (val) {
+                    _paq.push(["trackEvent", "自定义变量", "用户姓名", val]);
+                }
+            },
+            setCustomAge(val) {
+                if (val) {
+                    _paq.push(["trackEvent", "自定义变量", "用户年龄", val]);
+                }
+            },
+            mobileChange() {
+                var t = /^[1][3,4,5,7,8][0-9]{9}$/;
+                var n = $("#mobile").val();
+                if (t.test(n) && n.length == 11) {
+                    if(this.timer!=""){
+                       return;
+                    }
+                    $(".btn-code").removeClass("btn-gray");
+                    this.btnStatus = false;//按钮可以点击
+                } else {
+                    $(".btn-code").addClass("btn-gray");
+                    this.btnStatus = true;
+                }
+            },
+            transSMSCode() {//获取验证码
+                if (this.btnStatus) {
+                    return;
+                } else {
+                    this.$api.getVerifyCode(this.formData.phone).then(res => {
+                        this.smsCount(60);
+                    })
+                }
+            },
+            smsCount(t) {//重置按钮
+                var r = () => {
+                    if (t > 0) {
+                        t -= 1;
+                        this.btnStatus = true;
+                        $(".btn-code").addClass("btn-gray");
+                        this.smsText = t + "s后获取";
+                    } else {
+                        clearInterval(this.timer);
+                        this.timer="";
+                        this.smsText = "获取验证码";
+                        if (/^[1][3,4,5,7,8][0-9]{9}$/.test(this.formData.phone)) {
+                            $(".btn-code").removeClass("btn-gray");
+                            this.btnStatus = false;
+                        }
+                    }
+                };
+                this.timer = setInterval(function () {
+                    r()
+                }, 1000)
+            },
+            checkInfo() {
+                if (!this.$api.checkMobile(this.formData.phone)) return "手机号码输入有误";
+                if (!this.$api.checkName(this.formData.name)) return "您的姓名输入有误";
+                if (this.formData.age == "") return "请选择年龄";
+                if (!/^[0-9]{6}$/.test(this.formData.verifyCode)) return "验证码有误";
+                return true;
+            },
+            submit() {
+                var result = this.checkInfo();
+                if (result == true) {
+                    this.$api.submitForm(this.formData).then(res => {
+                        this.$loading.close();
+                        this.$success.open('0755');
+                        _paq.push(["trackEvent", "跳转成功页面", idList.channelName + "：" + idList.channelChildName]);
+                    });
+                } else {
+                    this.$toast(result);
+                }
+            },
+            scrollToTop(){
+                $('body,html').animate({
+                    scrollTop: 0
+                }, 1000);
+                return false;
+            },
+        },
+        mounted() {
+            document.title = "立刻说在线口语_在线英语口语_在线英语口语学习_英语口语学习网站";
+            this.$api.addMatomo(58);
+        },
+        components: {
+            "mt-picker": Picker,
+            "mt-popup": Popup
+        }
+    }
+</script>
+
+
+<style scoped lang="less">
+    /*@import './fonts/iconfont.css';*/
+    @import './main.less';
+    .mint-popup {
+        width: 100%;
+        /deep/ .picker-item {
+            opacity: .4;
+            color: #000000;
+            &.picker-selected {
+                opacity: 1;
+            }
+        }
+        .picker-toolbar-title{
+            display:flex;
+            flex-direction:row;
+            justify-content: space-between;
+            height:42px;
+            line-height: 42px;
+            font-size: 17px;
+        }
+        .usi-btn-cancel, .usi-btn-sure {
+            color: #108ee9;
+            padding: 1px 15px;
+        }
+    }
+</style>

@@ -10,8 +10,10 @@
         <div class="mobile-banner"
              v-lazy:background-image="require('./img/e607a4ca854ba373592a8cc75cc8fbd4.jpg')"></div>
         <div id="form-wrap" class="form-wrap" role="form">
-            <h6>在线实时互动</h6>
-            <h3>立即报名试读</h3>
+            <!--<h6>在线实时互动</h6>-->
+            <h6>领取&nbsp;牛津&nbsp;Plus&nbsp;试听课</h6>
+            <!--<h3>立即报名试读</h3>-->
+            <h3>立即体验</h3>
             <form class="linkagePage-form" autocomplete="off">
                 <ul class="form-ul">
                     <li class="_nation-code-wrap">
@@ -19,17 +21,14 @@
                                placeholder="家长手机号码" v-model="formData.phone" @blur="setCustomPhone(formData.phone)" @input="mobileChange">
                     </li>
                     <li class="_nation-code-wrap">
-                        <input name="nation_phone" data-track="tk-tel" class="form-input" v-model="smsCode" type="tel"
+                        <input name="nation_phone" data-track="tk-tel" class="form-input" v-model="formData.verifyCode" type="tel"
                                placeholder="请输入验证码">
                         <span class="code_btn" @click="getSmsCode()">{{smsText}}</span>
                     </li>
                     <li class="_nation-code-wrap">
-                        <select class="age_area form-input" name="age_area" v-model="formData.age" @change="setCustomAge(formData.age)" id="age_area" ref="ageArea">
+                        <select class="age_area form-input" v-model="formData.age" @change="setCustomAge(formData.age)" id="age_area" ref="ageArea">
                             <option value="-1" selected>请选择学员年龄</option>
-                            <option value="1岁">1岁</option>
-                            <option value="2岁">2岁</option>
-                            <option value="3岁">3岁</option>
-                            <option value="4岁">4岁</option>
+                            <option value="5岁以下">5岁以下</option>
                             <option value="5岁">5岁</option>
                             <option value="6岁">6岁</option>
                             <option value="7岁">7岁</option>
@@ -48,7 +47,7 @@
                         </select>
                     </li>
                     <li class="_nation-code-wrap">
-                        <input name="nation_phone" data-track="tk-tel" class="form-input" type="tel"
+                        <input name="nation_phone" data-track="tk-tel" class="form-input" type="text"
                                placeholder="学员姓名（选填）" v-model="formData.name" @blur="setCustomName(formData.name)">
                     </li>
                     <li class="submit-wrap">
@@ -115,16 +114,6 @@
         <img class="speial-common" src="./img/special.png" alt="">
         <img class="speial-common" src="./img/schooltrip.png" alt="">
         <div class="video-wrap">
-            <!--<ul class="video-list content" id="video-list" @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd">
-                <li class="video-li-hook" data-url="http://source.vipabc.com/ext/video/vipjr/english/usa-speech.mp4">
-                    <img src="./img/video2.png" alt="" @click="playVideo">
-                    <p class="text">哈佛：让孩子用英语登上国际舞台，哈佛演讲圆满收官。</p>
-                </li>
-                <li class="video-li-hook" data-url="http://source.vipabc.com/ext/video/vipjr/english/uk-speech.mp4">
-                    <img src="./img/video3.png" alt="" @click="playVideo">
-                    <p class="text">牛津：读牛津教材，去英国感受英伦气息，提高英语能力。</p>
-                </li>
-            </ul>-->
             <ul class="video-list content" id="video-list">
                 <li class="video-li-hook" data-url="http://source.vipabc.com/ext/video/vipjr/english/usa-speech.mp4">
                     <img src="./img/video2.png" alt="" @click="playVideo">
@@ -155,17 +144,14 @@
                                placeholder="家长手机号码" v-model="formData.phone" @blur="setCustomPhone(formData.phone)" @input="mobileChange">
                     </li>
                     <li class="_nation-code-wrap">
-                        <input name="nation_phone" data-track="tk-tel" class="form-input" type="tel" v-model="smsCode"
+                        <input name="nation_phone" data-track="tk-tel" class="form-input" type="tel" v-model="formData.verifyCode"
                                placeholder="请输入验证码">
                         <span class="code_btn" @click="getSmsCode()">{{smsText}}</span>
                     </li>
                     <li class="_nation-code-wrap">
-                        <select class="age_area form-input" name="age_area" ref="ageArea" v-model="formData.age" @change="setCustomAge(formData.age)">
+                        <select class="age_area form-input" ref="ageArea" v-model="formData.age" @change="setCustomAge(formData.age)">
                             <option value="-1" selected>请选择学员年龄</option>
-                            <option value="1岁">1岁</option>
-                            <option value="2岁">2岁</option>
-                            <option value="3岁">3岁</option>
-                            <option value="4岁">4岁</option>
+                            <option value="5岁以下">5岁以下</option>
                             <option value="5岁">5岁</option>
                             <option value="6岁">6岁</option>
                             <option value="7岁">7岁</option>
@@ -219,9 +205,10 @@
         data(){
             return{
                 btnStatus:false,//不可点击
-                smsCode:"",
                 smsText:"获取验证码",
+                timer:"",
                 formData:{
+                    verifyCode:"",
                     phone:"",
                     age:-1,
                     name:""
@@ -257,6 +244,9 @@
                 var t = /^[1][3,4,5,7,8][0-9]{9}$/;
                 var n = this.formData.phone;
                 if (t.test(n) && n.length == 11) {
+                    if(this.timer!=""){
+                        return;
+                    }
                     $(".code_btn").addClass("code_btn_click");
                     this.btnStatus=true;//按钮可以点击
                 } else {
@@ -272,14 +262,15 @@
                 })
             },
             smsCount(t){
-                var n;
                 var r = () =>{
                     if (t > 0) {
                         t -= 1;
+                        this.btnStatus = false;
                         $(".code_btn").removeClass("code_btn_click");
                         this.smsText = t + "s后获取";
                     } else {
-                        clearInterval(n);
+                        clearInterval(this.timer);
+                        this.timer="";
                         this.smsText = "获取验证码";
                         if(/^[1][3,4,5,7,8][0-9]{9}$/.test(this.formData.phone)){
                             $(".code_btn").addClass("code_btn_click");
@@ -287,13 +278,13 @@
                         }
                     }
                 };
-                n = setInterval(function () {
+                this.timer = setInterval(function () {
                     r()
                 }, 1000)
             },
             checkInfo() {
                 if (!this.$api.checkMobile(this.formData.phone)) return "家长手机号码输入有误";
-                if (!/^[0-9]{6}$/.test(this.smsCode)) return "验证码有误";
+                if (!/^[0-9]{6}$/.test(this.formData.verifyCode)) return "验证码有误";
                 if (this.formData.age ==-1) return "请选择学员年龄";
                 if (this.formData.name!=""&&!this.$api.checkName(this.formData.name)) return "学员姓名输入有误";
                 return true;
@@ -310,38 +301,6 @@
                     this.$toast(result);
                 }
             },
-            /*handleTouchStart(event){
-                this.touchStatus=true;
-                this.startX=event.targetTouches[0].clientX;
-            },
-            handleTouchMove(event){
-                if(this.animateStatus){//正在执行动画则不能开启另外一个动画
-                    return;
-                }
-                this.endX=event.targetTouches[0].clientX;
-                this.distance=this.endX-this.startX;
-                //console.log($("#video-list")[0].offsetLeft);
-                if(this.touchStatus){
-                    this.left+=this.distance ;
-                    if(this.left>0){
-                       this.left=0;
-                    }else if(this.left<-this.ulDistance-20){
-                        this.left=-this.ulDistance-20;
-                    }
-                    this.animateStatus=true;
-                    var _this=this;
-                    $("#video-list").animate(
-                        {
-                            left:_this.left+"px"
-                        },100,function () {
-                            _this.animateStatus=false;//动画结束后的回调
-                        }
-                    );
-                }
-            },
-            handleTouchEnd(){
-                this.touchStatus=false;
-            },*/
             playVideo(e){
                 var c = $("#my-video")[0];
                 var t = $(e.target.parentNode);

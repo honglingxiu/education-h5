@@ -1,0 +1,341 @@
+<template>
+	<div>
+		<img v-lazy="require('./img/banner.jpeg')" alt="图片加载中" class="top">
+		<div class="form">
+			<input type="tel" id="mobile" v-model="formData.phone" maxlength="11" @blur="setCustomPhone(formData.phone)" placeholder="输入您的手机号码" />
+			<input type="text" v-model="formData.verifyCode" placeholder="请输入短信验证码" maxlength="6">
+			<button type="button" class="btn-code btn-gray" :disabled="btnStatus" @click="getSmsCode">{{smsText}} {{time}}</button>
+			<input type="text" v-model="formData.age" class="select-age" readonly placeholder="请选择孩子年龄" @click="popupVisible = !popupVisible">
+			<input type="text" v-model="formData.name" placeholder="请输入孩子名字" @blur="setCustomName(formData.name)">
+		</div>
+		<div class="input-spec">
+			<div class="left">是否满足下面上课设备要求</div>
+			<div class="right">
+				<div class="cover">
+					<input type="radio" id="YES6" name="name6" value="是" v-model="formData.visitDevice">
+					<span for="YES6">是</span>
+				</div>
+				<div class="cover">
+					<input type="radio" id="NO6" name="name6" value="否" v-model="formData.visitDevice">
+					<span for="NO6">否</span>
+				</div>
+			</div>
+			<div class="tip">
+				<p>1）台式电脑+摄像头+头戴式耳麦</p>
+				<p>2）笔记本电脑（内置或外接摄像头）+头戴式耳麦</p>
+				<p>3）苹果台式电脑或苹果笔记本电脑</p>
+				<p>4）iPad1代以上的苹果平板电脑</p>
+			</div>
+		</div>
+		<div class="input-spec" style="margin-top: 15px;margin-bottom: 15px;">
+			<div class="left">是否愿意领取试听课</div>
+			<div class="right">
+				<div class="cover">
+					<input type="radio" id="YES7" name="name7" value="是" v-model="formData.receiveCourse">
+					<span for="YES7">是</span>
+				</div>
+				<div class="cover">
+					<input type="radio" id="NO7" name="name7" value="否" v-model="formData.receiveCourse">
+					<span for="NO7">否</span>
+				</div>
+			</div>
+		</div>
+		<div class="agreement">
+			<input id="agreement-btn" type="checkbox" v-model="agree">
+			<label>我已阅读并同意
+				<a class="oringe" href="https://activity.vipkid.com.cn/signupagreement">VIPKID用户注册协议</a>
+				和
+				<a class="oringe" href="https://activity.vipkid.com.cn/signupagreement/privce">隐私政策</a>
+			</label>
+			<div id="js-submit-btn" class="submit-btn" @click="submit" >立即免费领取</div>
+		</div>
+		<div class="reg-tip-words">
+			<img src="//s.vipkidstatic.com/fe-static/activity/img/signup/iconfont-speaker-a6d36298fa.png">
+			<div class="js-active-statement">适合4-12岁少儿</div>
+		</div>
+		<div class="temp-common bonus">
+			<div class="title">您为孩子免费领取了</div>
+			<div class="bonus-list"><img src="//s.vipkidstatic.com/fe-static/activity/img/register/template/bonus-list01-4cc2aca5f4.png" alt=""></div>
+		</div>
+		<div class="temp-common free">
+			<div class="title">丰富辅助课程免费学</div>
+			<div class="free-list"><img src="//s.vipkidstatic.com/fe-static/activity/img/register/template/free01-09bf907c91.png" class="left">
+				<img src="//s.vipkidstatic.com/fe-static/activity/img/register/template/free02-6b0220eb17.png" class="right">
+			</div>
+		</div>
+		<div class="temp-common">
+			<div class="title">
+				<p>VIPKID有助于</p>
+				<p>提升孩子五大应试能力</p>
+			</div>
+			<div class="subtitle">提升综合语言能力的同时，帮助孩子更好应对学校考试</div>
+			<img src="//s.vipkidstatic.com/fe-static/activity/img/register/template/improve-4be1cda326.png" class="improve-img">
+		</div>
+		<div class="temp-common course">
+			<div class="title">VIPKID专业课程体系</div>
+			<img src="//s.vipkidstatic.com/fe-static/activity/img/register/template/course-2f288a6ba6.png" class="course-img">
+		</div>
+		<div class="temp-common standard">
+			<div class="title">
+				<p>国际化教材</p>
+				<p>对标美国共同核心州立标准 CCSS</p>
+			</div>
+			<div class="subtitle">基于美国共同核心州立标准（CCSS）而独立研发的适合中国孩子的教材</div>
+			<div class="standard-list">
+				<div class="atom"><img src="//s.vipkidstatic.com/fe-static/activity/img/register/template/standard01-6d2f7e85f5.png">
+					<p>由专业经验超过10年的美国专业团队带队编写</p>
+				</div>
+				<div class="atom right"><img src="//s.vipkidstatic.com/fe-static/activity/img/register/template/standard02-cb3d7cda1a.png">
+					<p>国际化和本土化科学配比的教研团队</p>
+				</div>
+				<div class="atom full">
+					<img src="//s.vipkidstatic.com/fe-static/activity/img/register/template/standard03-51db137313.png">
+					<p>保证教材符合美国共同核心州立标准，又充分适应中国学生的实际情况</p>
+				</div>
+			</div>
+		</div>
+		<div class="temp-common-teachers teachers">
+			<div class="title">北美好外教，让孩子爱学敢说！</div>
+			<img src="//s.vipkidstatic.com/fe-static/activity/img/register/template/poster01-6b342d8033.png" class="teachers-img" v-show="videoImg" @click="videoImg=false">
+			<video src="https://video.vipkid.com.cn/1525677653327-a16b3b73738b78ae470299275ce1e5d2.mp4" controls="controls" autoplay="autoplay" v-if="!videoImg" class="teachers-img"></video>
+			<div class="navtitle">60000+北美优质外教</div>
+			<div class="teachers-experience">
+				<p>外教均均具备英语教学或教育辅导经验，其中部分外教是北美小学教师或具备ESL教学、辅导经验。 </p>
+				<p>外教录取率低于5%，每一位外教进行4轮以上筛选，确保每位外教懂教育、爱孩子 </p>
+				<p>VIPKID的外教均来自北美，发音纯正，熟悉北美文化，拥有国际视野</p>
+			</div>
+		</div>
+		<div class="temp-common-effect effect fn-pb50">
+			<div class="title">翻转课堂学习模式，让孩子学习更高效</div>
+			<div class="effect-list"><img src="//s.vipkidstatic.com/fe-static/activity/img/register/template/effect01-5c032f4b90.png">
+				<div class="content">
+					<div class="h1">课前强参与</div>
+					<div class="h2"><span>3-8分钟</span>预习视频</div>
+					<div class="text">真人和动画结合、充满趣味的故事情节带孩子提前预热课程了解所学主题，使课堂时间让孩子更专注于知识的深度理解和运用。</div>
+				</div>
+			</div>
+			<div class="effect-list"><img src="//s.vipkidstatic.com/fe-static/activity/img/register/template/effect02-d3778ced23.png">
+				<div class="content">
+					<div class="h1">课中强互动</div>
+					<div class="h2"><span>25分钟</span>北美外教在线1对1课程</div>
+					<div class="text">纯正美式发音，提供“母语式”语言环境；高频次互动，锻炼孩子在不同的学科和情境中学习英语；1对1教学，给孩子100%关注。</div>
+				</div>
+			</div>
+			<div class="effect-list"><img src="//s.vipkidstatic.com/fe-static/activity/img/register/template/effect03-022f102562.png">
+				<div class="content">
+					<div class="h1">课后强反馈</div>
+					<div class="h2"><span>5-25分钟</span>在线家庭作业 </div>
+					<div class="h2"><span>10-15分钟</span>复习手册</div>
+					<div class="text">在线互动复习、实战练习拉升孩子的求知欲和注意力；线下全彩色复习手册，使学习效果反馈更多样。</div>
+				</div>
+			</div>
+		</div>
+		<div class="temp-common-service service">
+			<div class="title">我们的承诺</div>
+			<div class="service-list">
+				<div class="sl-title"><img src="//s.vipkidstatic.com/fe-static/activity/img/register/template/service01-d033633527.png" class="first"><span>免费试学</span></div>
+				<div class="sl-text">对首次购买的课程不满意，可在主修课或公开课开课日30天内，且被扣除的主修课不超过12节，申请全额退款，但需在6个月退费有效期内提出，详见《课程服务协议》。</div>
+			</div>
+			<div class="service-list">
+				<div class="sl-title"><img src="//s.vipkidstatic.com/fe-static/activity/img/register/template/service02-47121b190c.png"><span>服务承诺</span></div>
+				<div class="sl-text">付费后，每位学员都会与VIPKID签订一份课程服务协议，我们向学员保障服务水平。 </div>
+			</div>
+			<div class="service-list">
+				<div class="sl-title"><img src="//s.vipkidstatic.com/fe-static/activity/img/register/template/service03-b1115e14e6.png"><span>师资承诺</span></div>
+				<div class="sl-text">VIPKID一贯坚持“纯北美外教，纯美国教材”的教学理念，我 们保证外教资质的优质教学⽔平。</div>
+			</div>
+		</div>
+		<div class="promise-origin">
+			<div class="icp">京ICP备14002500号</div>
+			<div class="corp">北京大米科技有限公司</div>
+			<div class="address">公司地址：北京市东城区地安门东大街89号16幢2层201</div>
+		</div>
+		<div id="dock" class="dock">
+			<div class="backtop">
+				<img src="./img/footer.png" class="dino">
+				<div class="btn-back" @click="$api.scrollToTop"></div>
+				<div class="js-online-service"></div>
+			</div>
+		</div>
+		<mt-popup v-model="popupVisible" position="bottom">
+			<mt-picker :slots="ageList" ref="mtPickerAge" showToolbar>
+				<div class="picker-toolbar-title">
+					<div class="usi-btn-cancel" @click="popupVisible = !popupVisible">取消</div>
+					<div class="">选择年龄</div>
+					<div class="usi-btn-sure" @click="onComfirmChange">确定</div>
+				</div>
+			</mt-picker>
+		</mt-popup>
+	</div>
+</template>
+<style src="./main.css"></style>
+<style lang="less" scoped>
+	.mint-popup {
+		width: 100%;
+		/deep/ .picker-item {
+			opacity: .4;
+			color: #000000;
+			&.picker-selected {
+				opacity: 1;
+			}
+		}
+		.picker-toolbar-title{
+			display:flex;
+			flex-direction:row;
+			justify-content: space-between;
+			height:42px;
+			line-height: 42px;
+			font-size: 17px;
+		}
+		.usi-btn-cancel, .usi-btn-sure {
+			color: #108ee9;
+			padding: 1px 15px;
+		}
+	}
+</style>
+<script>
+    import {Picker, Popup} from 'mint-ui';
+	export default {
+		data() {
+			return {
+				videoImg:true,
+				smsText: "获取验证码",
+				btnStatus: false,
+				agree:false,
+				time: "",
+				formData: {
+					verifyCode: "",
+					phone: "",
+					name: "",
+					age: "",
+					receiveCourse:'',
+					visitDevice:'',
+				},
+                popupVisible: false,//显示年龄选择框标识
+                ageList: [{
+                    values: ["4岁以下","4岁", "5岁", "6岁", "7岁", "8岁", "9岁", "10岁", "11岁", "12岁","12岁以上"],
+                    flex: 1,
+                    defaultIndex: 2,
+                    className: "one"
+                }]
+			}
+		},
+		methods: {
+			onComfirmChange() {
+				this.formData.age = this.$refs.mtPickerAge.getValues()[0];
+				this.setCustomAge(this.formData.age); //上报年龄变量
+				this.$refs.mtPickerAge.setValues(["6岁"]); //将下拉年龄列表恢复初始值
+			},
+			setCustomPhone(val) {
+				if(val.length === 11) {
+					if(/^1[0-9]{10}$/.test(val)) {
+						_paq.push(["trackEvent", "自定义变量", "手机号码", val]);
+					}
+				}
+			},
+			setCustomName(val) {
+				if(val) {
+					_paq.push(["trackEvent", "自定义变量", "孩子姓名", val]);
+				}
+			},
+			setCustomAge(val) {
+				if(val) {
+					_paq.push(["trackEvent", "自定义变量", "孩子年龄", val]);
+				}
+			},
+			sendcCode() { //获取验证码
+				this.btnStatus = true;
+				this.smsText = "重新发送";
+				this.time = "60";
+				this.$api.countDown(
+					this.time,
+					tick => {
+						this.time = tick;
+					},
+					() => {
+						this.time = "";
+						this.btnStatus = false;
+					}
+				);
+				this.$messagebox.alert("验证码已发送");
+			},
+			getSmsCode() {
+				if(this.btnStatus) return;
+				this.$api.getVerifyCode(this.formData.phone).then(res => {
+					this.sendcCode();
+				})
+			},
+			checkInfo() {
+				if(!this.$api.checkMobile(this.formData.phone)) return "手机号输入有误";
+				if(!/^[0-9]{6}$/.test(this.formData.verifyCode)) return "验证码有误";
+				if(this.formData.age == -1) return "请选择孩子年龄";
+				if(!this.$api.checkName(this.formData.name)) return "孩子姓名输入有误";
+				if(this.formData.visitDevice === '') return"请选择是否有设备";
+				if(this.formData.receiveCourse === '') return"请选择是否领取课程";
+				if(!this.agree) return "需要同意VIPKID注册协议哦~";
+				return true;
+			},
+            onComfirmChange() {
+                this.popupVisible=false;
+                this.formData.age=this.$refs.mtPickerAge.getValues()[0];
+                this.setCustomAge(this.formData.age);//上报年龄变量
+                this.$refs.mtPickerAge.setValues(["6岁"]);//将下拉年龄列表恢复初始值
+            },
+			submit() {
+				var result = this.checkInfo();
+				if(result == true) {
+					this.$api.submitForm(this.formData).then(res => {
+						this.$loading.close();
+						this.$success.open('010','05753');
+						_paq.push(["trackEvent", "跳转成功页面", idList.channelName + "：" + idList.channelChildName]);
+					});
+				} else {
+					this.$toast(result);
+				}
+			},
+            handleScroll(){
+                var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+                if(scrollTop>1000){
+                    $("#dock").fadeIn(1000);
+                }
+                else {
+                    $("#dock").fadeOut(1000);
+                }
+            }
+		},
+		mounted() {
+			document.title = "VIPKID 在线少儿英语";
+			this.$api.addMatomo(55);
+			//将rem重置为7.5rem为100%的屏幕宽度，1rem为48px，之前是7.2rem，1rem为50px，参考屏幕是360px
+			! function(e, t) {
+				function n() {
+					var n = s.getBoundingClientRect().width;
+					t = t || 540, n > t && (n = t);
+					var i = 96 * n / e;
+					s.style.fontSize = i + "px"
+				}
+
+				var i, o = document,
+					d = window,
+					s = o.documentElement;
+				n(), d.addEventListener("resize", function() {
+					clearTimeout(i), i = setTimeout(n, 300)
+				}, !1), d.addEventListener("pageshow", function(e) {
+					e.persisted && (clearTimeout(i), i = setTimeout(n, 300))
+				}, !1), d.addEventListener("DOMContentLoaded", function() {
+					o.body.style.position = "relative", o.body.style.fontSize = "16px", o.body.style.margin = "0 auto", o.body.style.maxWidth = t + "px"
+				}, !1)
+			}(720, 640);
+			//轮播图初始化
+
+            $(window).on("scroll",this.handleScroll);//窗口滚动事件
+		},
+        beforeDestroy(){
+            $(window).off("scroll");
+        },
+        components: {
+            "mt-picker": Picker,
+            "mt-popup": Popup
+        }
+	}
+</script>

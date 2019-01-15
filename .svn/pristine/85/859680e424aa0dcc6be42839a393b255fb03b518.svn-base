@@ -1,0 +1,63 @@
+.fbc_staticText {
+	text-align: center;
+	line-height: 1.4;
+	font-size: 15px;
+	font-weight: bold;
+	color: #666666;
+	margin: 10px;
+}
+.fb-header-info {
+	background-color: rgb(157, 41, 51);
+	text-align: center;
+	font-size: 16px;
+  color: #FFFFFF;
+  line-height: 40px;
+  font-weight: bold;
+}
+.header-form {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	padding: 40px 20px 30px 20px;
+	margin: 15px;
+	background: #fff;
+	border-radius: 6px;
+	box-shadow: #333 0 1px 4px -1px;
+	margin-top: 0;
+}
+
+.header-form input, select {
+	width: 100%;
+	padding: 15px 0;
+	color: #666;
+	font-size: 14px;
+	margin-bottom: 20px;
+	border-radius: 4px;
+	border: 1px solid #ddd;
+	text-indent: 10px;
+	background: #fff;
+}
+.smsCode {
+	position: relative;
+}
+.getVerCode-btn {
+	position: absolute;
+	top: 4px;
+	right: 10px;
+	border: 0;
+	outline: 0;
+	color: #9D2933;
+	font-size: 14px;
+	background: #fff;
+	padding: 10px;
+	cursor: pointer;
+}
+
+.form-submit-btn {
+	padding: 17px 0;
+	color: #fff;
+	background-color: #9D2933;
+	text-align: center;
+	border-radius: 6px;
+	cursor: pointer;
+}

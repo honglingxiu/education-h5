@@ -1,0 +1,433 @@
+<template>
+    <div class="wrapper">
+        <div class="lp-header-init lp-header-init-jr">
+            <a class="lp-header-init-logo" href="//www.vipjr.com/" target="_blank">
+                <img src="//source.vipabc.com/ext/images/website/vjr/logo_jr.png?v=1" alt="vipJr官网"></a>
+            <div class="lp-header-init-logo-info"><span>青少儿在线教育</span></div>
+            <a class="lp-header-init-mobile-tel" href="Tel:4009303030">
+                <img src="//source.vipabc.com/Ext/images/website/share/tel_icon2.png" alt="联系我们:4009-30-30-30"></a>
+        </div>
+        <div class="mobile-banner"
+             v-lazy:background-image="require('./img/e607a4ca854ba373592a8cc75cc8fbd4.jpg')"></div>
+        <div id="form-wrap" class="form-wrap" role="form">
+            <!--<h6>在线实时互动</h6>-->
+            <h6>领取&nbsp;牛津&nbsp;Plus&nbsp;试听课</h6>
+            <!--<h3>立即报名试读</h3>-->
+            <h3>立即体验</h3>
+            <form class="linkagePage-form" autocomplete="off">
+                <ul class="form-ul">
+                    <li class="_nation-code-wrap">
+                        <input name="nation_phone" data-track="tk-tel" class="form-input" type="tel" maxlength="11"
+                               placeholder="家长手机号码" v-model="formData.phone" @blur="setCustomPhone(formData.phone)" @input="mobileChange">
+                    </li>
+                    <li class="_nation-code-wrap">
+                        <input name="nation_phone" data-track="tk-tel" class="form-input" v-model="formData.verifyCode" type="tel"
+                               placeholder="请输入验证码">
+                        <span class="code_btn" @click="getSmsCode()">{{smsText}}</span>
+                    </li>
+                    <li class="_nation-code-wrap">
+                        <select class="age_area form-input" name="age_area" v-model="formData.age" @change="setCustomAge(formData.age)" id="age_area" ref="ageArea">
+                            <option value="-1" selected>请选择学员年龄</option>
+                            <option value="1岁">1岁</option>
+                            <option value="2岁">2岁</option>
+                            <option value="3岁">3岁</option>
+                            <option value="4岁">4岁</option>
+                            <option value="5岁">5岁</option>
+                            <option value="6岁">6岁</option>
+                            <option value="7岁">7岁</option>
+                            <option value="8岁">8岁</option>
+                            <option value="9岁">9岁</option>
+                            <option value="10岁">10岁</option>
+                            <option value="11岁">11岁</option>
+                            <option value="12岁">12岁</option>
+                            <option value="13岁">13岁</option>
+                            <option value="14岁">14岁</option>
+                            <option value="15岁">15岁</option>
+                            <option value="16岁">16岁</option>
+                            <option value="17岁">17岁</option>
+                            <option value="18岁">18岁</option>
+                            <option value="18岁以上">18岁以上</option>
+                        </select>
+                    </li>
+                    <li class="_nation-code-wrap">
+                        <input name="nation_phone" data-track="tk-tel" class="form-input" type="text"
+                               placeholder="学员姓名（选填）" v-model="formData.name" @blur="setCustomName(formData.name)">
+                    </li>
+                    <li class="submit-wrap">
+                        <input data-track="tk-submit" class="form-submit button-animated" type="button" value="马上报名" @click="submit">
+                    </li>
+                </ul>
+            </form>
+        </div>
+        <div class="v-jr-index-wrapper">
+            <div class="_img-holder" v-lazy:background-image="require('./img/english.png')"></div>
+        </div>
+        <div class="v-jr-index-wrapper">
+            <div class="_img-holder" v-lazy:background-image="require('./img/math.png')"></div>
+        </div>
+        <div class="v-jr-index-wrapper">
+            <div class="_img-holder" v-lazy:background-image="require('./img/programing.png')"></div>
+        </div>
+        <div class="v-jr-center">
+            <h2 class="_title">为什么孩子要在<span>vipJr学习？</span></h2>
+            <div class="v-jr-box">
+                <div class="v-jr-pic startAnimate">
+                    <img class="m-show" src="./img/m-reasion1.png" alt="">
+                    <div class="item-info">
+                        <div class="item-info-title">更适合中国孩子的课程</div>
+                        <div class="item-info-des">
+                            <p>牛津出版社全网独家授权牛津探索课程，国内双语学校使用教材，清晰对标国内、外教学标准，轻松搞定升学与留学。</p>
+                            <p>除全球外教外，更有中国数学奥林匹克金牌教练领队，打造高效的数学在线课堂。</p>
+                            <p>英语+数学，口语、考分双提升。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="v-jr-pic startAnimate">
+                    <img class="m-show" src="./img/m-reasion2.png" alt="">
+                    <div class="item-info">
+                        <div class="item-info-title">精选师资因材施教</div>
+                        <div class="item-info-des">全球英语外教获TESOL/TEFL认证，并有数学金牌教练；根据孩子年龄、水平、学习需求，量身定制最适合内容。</div>
+                    </div>
+                </div>
+                <div class="v-jr-pic startAnimate">
+                    <img class="m-show" src="./img/m-reasion3.png" alt="">
+                    <div class="item-info">
+                        <div class="item-info-title">高效便捷学习</div>
+                        <div class="item-info-des">手机、平板、电脑，多终端覆盖，免去线下奔波，在家快乐学习。</div>
+                    </div>
+                </div>
+                <div class="v-jr-pic startAnimate">
+                    <img class="m-show" src="./img/m-reasion4.png" alt="">
+                    <div class="item-info">
+                        <div class="item-info-title">效果全程掌握</div>
+                        <div class="item-info-des">外教+助教+课程顾问，全程参与孩子学习成长，课堂互动、进度、效果随时见证。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="v-jr-index-common v-jr-index-section-oxford">
+            <h2 class="title"><span>独家牛津 Plus </span><em>课程</em></h2>
+            <h2 class="sub_title">牛津大学出版社独家在线授权，甄选三套更适合中国学生的内容，口语考分双提升</h2>
+            <div class="oxford-video" data-url="http://source.vipabc.com/ext/video/LP/oxfordplus/intro.mp4?v=1">
+                <img src="./img/video.png" alt="" @click="playVideo">
+            </div>
+            <div class="cloud">
+            </div>
+        </div>
+        <img class="speial-common" src="./img/special.png" alt="">
+        <img class="speial-common" src="./img/schooltrip.png" alt="">
+        <div class="video-wrap">
+            <!--<ul class="video-list content" id="video-list" @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd">
+                <li class="video-li-hook" data-url="http://source.vipabc.com/ext/video/vipjr/english/usa-speech.mp4">
+                    <img src="./img/video2.png" alt="" @click="playVideo">
+                    <p class="text">哈佛：让孩子用英语登上国际舞台，哈佛演讲圆满收官。</p>
+                </li>
+                <li class="video-li-hook" data-url="http://source.vipabc.com/ext/video/vipjr/english/uk-speech.mp4">
+                    <img src="./img/video3.png" alt="" @click="playVideo">
+                    <p class="text">牛津：读牛津教材，去英国感受英伦气息，提高英语能力。</p>
+                </li>
+            </ul>-->
+            <ul class="video-list content" id="video-list">
+                <li class="video-li-hook" data-url="http://source.vipabc.com/ext/video/vipjr/english/usa-speech.mp4">
+                    <img src="./img/video2.png" alt="" @click="playVideo">
+                    <p class="text">哈佛：让孩子用英语登上国际舞台，哈佛演讲圆满收官。</p>
+                </li>
+                <li class="video-li-hook" data-url="http://source.vipabc.com/ext/video/vipjr/english/uk-speech.mp4">
+                    <img src="./img/video3.png" alt="" @click="playVideo">
+                    <p class="text">牛津：读牛津教材，去英国感受英伦气息，提高英语能力。</p>
+                </li>
+            </ul>
+        </div>
+        <img class="speial-common" src="./img/teacher_1.png" alt="">
+        <img class="speial-common" src="./img/teacher_2.png" alt="">
+        <img class="speial-common" src="./img/teacher_3.png" alt="">
+        <img class="speial-common" src="./img/program1.png" alt="">
+        <img class="speial-common" src="./img/program2.png" alt="">
+        <img class="speial-common" src="./img/program3.png" alt="">
+        <img class="speial-common" src="./img/protocol1.png" alt="">
+        <img class="speial-common" src="./img/protocol2.png" alt="">
+        <div class="form-wrap form-wrap-two">
+            <form class="linkagePage-form" autocomplete="off">
+                <h3>青少儿在线教育<br>
+                    <b>立即报名试读</b>
+                </h3>
+                <ul class="form-ul">
+                    <li class="_nation-code-wrap">
+                        <input name="nation_phone" data-track="tk-tel" class="form-input" type="tel" maxlength="11"
+                               placeholder="家长手机号码" v-model="formData.phone" @blur="setCustomPhone(formData.phone)" @input="mobileChange">
+                    </li>
+                    <li class="_nation-code-wrap">
+                        <input name="nation_phone" data-track="tk-tel" class="form-input" type="tel" v-model="formData.verifyCode"
+                               placeholder="请输入验证码">
+                        <span class="code_btn" @click="getSmsCode()">{{smsText}}</span>
+                    </li>
+                    <li class="_nation-code-wrap">
+                        <select class="age_area form-input" name="age_area" ref="ageArea" v-model="formData.age" @change="setCustomAge(formData.age)">
+                            <option value="-1" selected>请选择学员年龄</option>
+                            <option value="1岁">1岁</option>
+                            <option value="2岁">2岁</option>
+                            <option value="3岁">3岁</option>
+                            <option value="4岁">4岁</option>
+                            <option value="5岁">5岁</option>
+                            <option value="6岁">6岁</option>
+                            <option value="7岁">7岁</option>
+                            <option value="8岁">8岁</option>
+                            <option value="9岁">9岁</option>
+                            <option value="10岁">10岁</option>
+                            <option value="11岁">11岁</option>
+                            <option value="12岁">12岁</option>
+                            <option value="13岁">13岁</option>
+                            <option value="14岁">14岁</option>
+                            <option value="15岁">15岁</option>
+                            <option value="16岁">16岁</option>
+                            <option value="17岁">17岁</option>
+                            <option value="18岁">18岁</option>
+                            <option value="18岁以上">18岁以上</option>
+                        </select>
+                    </li>
+                    <li class="_nation-code-wrap">
+                        <input name="nation_phone" data-track="tk-tel" class="form-input" type="tel"
+                               placeholder="学员姓名（选填）" v-model="formData.name" @blur="setCustomName(formData.name)">
+                    </li>
+                    <li class="submit-wrap">
+                        <input data-track="tk-submit" class="form-submit button-animated" type="button" value="马上报名" @click="submit">
+                    </li>
+                </ul>
+            </form>
+        </div>
+        <div class="_pop_show-mobile" id="pop-show-mobile">
+            <div class="text">
+                免费领取价值298元体验课
+            </div>
+            <div class="_btn_mobile-box" @click="scrollToTop">立即领取</div>
+        </div>
+        <div class="loading"><span></span></div>
+        <div class="m">
+            <video id="my-video" src="" x5-video-player-type="h5" autoplay="true" controls="controls"
+                   style="object-fit:fill">
+                您的手机不支持HTML5视频
+            </video>
+        </div>
+    </div>
+</template>
+
+<style scoped lang="less">
+    @import './main.less';
+</style>
+
+<script>
+    import BScroll from 'better-scroll'
+    export default {
+        data(){
+            return{
+                btnStatus:false,//不可点击
+                smsText:"获取验证码",
+                formData:{
+                    verifyCode:"",
+                    phone:"",
+                    age:-1,
+                    name:""
+                },
+                touchStatus:false,
+                animateStatus:false,
+                startX:0,
+                endX:0,
+                distance:0,
+                left:0,
+                ulDistance:0
+            }
+        },
+        methods: {
+            setCustomPhone(val) {
+                if (val.length === 11) {
+                    if (/^1[0-9]{10}$/.test(val)) {
+                        _paq.push(["trackEvent", "自定义变量", "家长手机号码", val]);
+                    }
+                }
+            },
+            setCustomAge(val) {
+                if (val) {
+                    _paq.push(["trackEvent", "自定义变量", "学员年龄", val]);
+                }
+            },
+            setCustomName(val) {
+                if (val) {
+                    _paq.push(["trackEvent", "自定义变量", "学员姓名", val]);
+                }
+            },
+            mobileChange(){
+                var t = /^[1][3,4,5,7,8][0-9]{9}$/;
+                var n = this.formData.phone;
+                if (t.test(n) && n.length == 11) {
+                    $(".code_btn").addClass("code_btn_click");
+                    this.btnStatus=true;//按钮可以点击
+                } else {
+                    $(".code_btn").removeClass("code_btn_click");
+                    this.btnStatus=false;
+                }
+            },
+            getSmsCode(){
+                if (!this.btnStatus) return;
+                this.$api.getVerifyCode(this.formData.phone).then(res => {
+                    this.btnStatus=false;
+                    this.smsCount(60);
+                })
+            },
+            smsCount(t){
+                var n;
+                var r = () =>{
+                    if (t > 0) {
+                        t -= 1;
+                        $(".code_btn").removeClass("code_btn_click");
+                        this.smsText = t + "s后获取";
+                    } else {
+                        clearInterval(n);
+                        this.smsText = "获取验证码";
+                        if(/^[1][3,4,5,7,8][0-9]{9}$/.test(this.formData.phone)){
+                            $(".code_btn").addClass("code_btn_click");
+                            this.btnStatus= true;
+                        }
+                    }
+                };
+                n = setInterval(function () {
+                    r()
+                }, 1000)
+            },
+            checkInfo() {
+                if (!this.$api.checkMobile(this.formData.phone)) return "家长手机号码输入有误";
+                if (!/^[0-9]{6}$/.test(this.formData.verifyCode)) return "验证码有误";
+                if (this.formData.age ==-1) return "请选择学员年龄";
+                if (this.formData.name!=""&&!this.$api.checkName(this.formData.name)) return "学员姓名输入有误";
+                return true;
+            },
+            submit(){
+                var result=this.checkInfo();
+                if(result==true){
+                    this.$api.submitForm(this.formData).then(res => {
+                        this.$loading.close();
+                        this.$success.open();
+                        _paq.push(["trackEvent", "跳转成功页面", idList.channelName + "：" + idList.channelChildName]);
+                    });
+                }else {
+                    this.$toast(result);
+                }
+            },
+            /*handleTouchStart(event){
+                this.touchStatus=true;
+                this.startX=event.targetTouches[0].clientX;
+            },
+            handleTouchMove(event){
+                if(this.animateStatus){//正在执行动画则不能开启另外一个动画
+                    return;
+                }
+                this.endX=event.targetTouches[0].clientX;
+                this.distance=this.endX-this.startX;
+                //console.log($("#video-list")[0].offsetLeft);
+                if(this.touchStatus){
+                    this.left+=this.distance ;
+                    if(this.left>0){
+                       this.left=0;
+                    }else if(this.left<-this.ulDistance-20){
+                        this.left=-this.ulDistance-20;
+                    }
+                    this.animateStatus=true;
+                    var _this=this;
+                    $("#video-list").animate(
+                        {
+                            left:_this.left+"px"
+                        },100,function () {
+                            _this.animateStatus=false;//动画结束后的回调
+                        }
+                    );
+                }
+            },
+            handleTouchEnd(){
+                this.touchStatus=false;
+            },*/
+            playVideo(e){
+                var c = $("#my-video")[0];
+                var t = $(e.target.parentNode);
+                var n = t.data("url");
+                if (!n) {
+                    return
+                }
+                e.preventDefault();
+                $(c).attr("src", n);
+                c.play();
+                $(".loading").css("display", "block")
+            },
+            scrollToTop(){
+                $('body,html').animate({
+                    scrollTop: 0
+                }, 1000);
+                return false;
+            },
+            handleScroll(){
+                var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+                if(scrollTop>1000){
+                    //this.btnShow=true;
+                    $("#pop-show-mobile").fadeIn(1000);
+                }
+                else {
+                    //this.btnShow=false;
+                    $("#pop-show-mobile").fadeOut(1000);
+                }
+            }
+        },
+        mounted() {
+            document.title="vipJr 能说会考当学霸！";
+            this.$api.addMatomo(45);
+            //将rem重置为10rem为100%的屏幕宽度，之前是7.2rem
+            !function (e, t) {
+                function n() {
+                    var n = s.getBoundingClientRect().width;
+                    t = t || 540, n > t && (n = t);
+                    var i = 72 * n / e;
+                    s.style.fontSize = i + "px"
+                }
+
+                var i, o = document, d = window, s = o.documentElement;
+                n(), d.addEventListener("resize", function () {
+                    clearTimeout(i), i = setTimeout(n, 300)
+                }, !1), d.addEventListener("pageshow", function (e) {
+                    e.persisted && (clearTimeout(i), i = setTimeout(n, 300))
+                }, !1), d.addEventListener("DOMContentLoaded", function () {
+                    o.body.style.position = "relative", o.body.style.fontSize = "16px", o.body.style.margin = "0 auto", o.body.style.maxWidth = t + "px"
+                }, !1)
+            }(720, 640);
+            $("#video-list").width($(".video-li-hook").width()*2+25);
+            this.ulDistance=$("#video-list").width()-$(document.body).outerWidth(true);
+
+            //视频播放
+            var c = $("#my-video")[0];
+            c.addEventListener("canplay", function () {
+                $(".loading").css("display", "none");
+                $(".m").css("display", "block")
+            });
+            c.addEventListener("x5videoexitfullscreen", function () {
+                $(".m").css("display", "none");
+                c.pause()
+            });
+            c.addEventListener("webkitendfullscreen", function () {
+                $(".m").css("display", "none");
+                c.pause()
+            });
+            c.addEventListener("ended", function (e) {
+            });
+
+            $(window).on("scroll",this.handleScroll);//窗口滚动事件
+
+            //视频区域左右滑动
+            let wrapper = document.querySelector('.video-wrap');
+            this.scrollWall = new BScroll(wrapper,{
+                scrollX: true,
+                eventPassthrough: 'vertical'
+            });
+        },
+        beforeDestroy(){
+            $(window).off("scroll");
+        }
+    }
+</script>
+
+

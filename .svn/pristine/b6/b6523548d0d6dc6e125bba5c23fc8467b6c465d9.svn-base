@@ -1,0 +1,154 @@
+<template>
+	<div>
+		<div class="bg"></div>
+		<div class="banner-items">
+			<div class="banner-items-left">
+				<img v-lazy="require('./img/vipJr_logo.png')" />
+				<p>价值<span>488元</span>vipJr课程</p>
+			</div>
+			<div class="banner-items-right">
+				<img v-lazy="require('./img/AI_logo.png')" />
+				<p>价值<span>388元</span>松鼠AI课程</p>
+			</div>
+		</div>
+		<div class="form">
+			<img v-lazy="require('./img/form-banner.png')" />
+			<div>
+				<input class="phone-input" type="tel" v-model="form.phone" placeholder="输入手机号码" maxlength="11" @input="setCustomPhone(form.phone)">
+				<span class="getVerCode-btn" :disabled="disbtn" @click="getSmsCode">{{codetxt}} {{time}}</span>
+			</div>
+			<input type="number" v-model="form.verifyCode" placeholder="输入验证码">
+			<input type="text" v-model="form.name" placeholder="宝贝名字" @blur="setCustomName(form.name)">
+			<!--<select v-model="form.age">
+				<option value disabled selected>选择宝贝年龄</option>
+				<option v-for="item in ages" :key="item.value" :label="item.value" :value="item.value"></option>
+			</select>-->
+			<select n-type="age" v-model="form.age" @change="setCustomAge(form.age)">
+				<option class="first" value="-1" selected disabled="disabled">选择宝贝年龄</option>
+				<option value="5岁以下">5岁以下</option>
+				<option value="5岁">5岁</option>
+				<option value="6岁">6岁</option>
+				<option value="7岁">7岁</option>
+				<option value="8岁">8岁</option>
+				<option value="9岁">9岁</option>
+				<option value="10岁">10岁</option>
+				<option value="11岁">11岁</option>
+				<option value="12岁">12岁</option>
+				<option value="13岁">13岁</option>
+				<option value="14岁">14岁</option>
+				<option value="15岁">15岁</option>
+				<option value="16岁">16岁</option>
+				<option value="17岁">17岁</option>
+				<option value="18岁">18岁</option>
+				<option value="18岁以上">18岁以上</option>
+			</select>
+			<select v-model="form.grade" @change="setCustomGrade(form.grade)">
+				<option class="first" value="-1" selected disabled="disabled">选择宝贝年级</option>
+				<option value="四年级以下">四年级以下</option>
+				<option value="小学四年级">小学四年级</option>
+				<option value="小学五年级">小学五年级</option>
+				<option value="小学六年级">小学六年级</option>
+				<option value="初一">初一</option>
+				<option value="初二">初二</option>
+				<option value="初三">初三</option>
+				<option value="高中以上">高中以上</option>
+			</select>
+		</div>
+		<button class="form-submit-btn" @click="submit()">立即领课</button>
+		<p class="ps">领课后即可预约，按照预约时间上课即可</p>
+		<img v-lazy="require('./img/vipJr.png')" alt="图片加载中" width="100%">
+		<img v-lazy="require('./img/ai.png')" alt="图片加载中" width="100%">
+	</div>
+</template>
+
+<style src="./main.css" scoped></style>
+
+<script>
+	export default {
+		data() {
+			return {
+				disbtn: false,
+				codetxt: "获取验证码",
+				time: "",
+				form: {
+					name: "",
+					phone: "",
+					grade: -1,
+					verifyCode: "",
+					age: -1,
+				},
+			}
+		},
+		methods: {
+			setCustomAge(val) {
+				if(val) {
+					_paq.push(["trackEvent", "自定义变量", "宝贝年龄", val]);
+				}
+			},
+			setCustomName(val) {
+				if(val) {
+					_paq.push(["trackEvent", "自定义变量", "孩子姓名", val]);
+				}
+			},
+			setCustomPhone(val) {
+				if(val.length === 11) {
+					if(/^1[0-9]{10}$/.test(val)) {
+						_paq.push(["trackEvent", "自定义变量", "手机号", val]);
+					}
+				}
+			},
+			setCustomGrade(val) {
+				if(val) {
+					_paq.push(["trackEvent", "自定义变量", "孩子就读年级", val]);
+				}
+			},
+			sendcCode() {
+				this.disbtn = true;
+				this.codetxt = "重新发送";
+				this.time = "60";
+				this.$api.countDown(
+					this.time,
+					tick => {
+						this.time = tick;
+					},
+					() => {
+						this.time = "";
+						this.disbtn = false;
+					}
+				);
+				this.$messagebox.alert("验证码已发送");
+			},
+			getSmsCode() {
+				if(this.disbtn) return;
+				this.$api.getVerifyCode(this.form.phone).then(res => {
+					this.sendcCode();
+				})
+			},
+			checkInfo() {
+				if(!this.$api.checkName(this.form.name)) return "孩子姓名输入有误";
+				if(!this.$api.checkMobile(this.form.phone)) return "手机号码输入有误";
+				if(!/^[0-9]{6}$/.test(this.form.verifyCode)) return "验证码有误";
+				if(this.form.age === -1) return "请选择年龄";
+				if(this.form.grade === -1) return "请选择年级";
+				return true;
+			},
+			submit() {
+				let result = this.checkInfo();
+				if(result !== true) {
+					this.$toast(result);
+					return;
+				}
+				this.$loading.open();
+				this.$api.submitForm(this.form).then(res => {
+					this.$loading.close();
+					this.$success.open();
+					_paq.push(["trackEvent", "跳转成功页面", idList.channelName + "：" + idList.channelChildName]);
+				});
+			}
+		},
+		created() {
+			document.title = "免费领取488元学习大礼包";
+			this.$api.addMatomo(52);
+		}
+	}
+</script>

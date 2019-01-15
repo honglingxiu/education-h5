@@ -1,0 +1,436 @@
+body,
+html {
+	height: 100%;
+	width: 100%;
+}
+
+* {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+}
+
+li {
+	list-style: none;
+}
+
+h2,
+h3 {
+	margin: 4px;
+	color: #000;
+}
+
+a:hover {
+	text-decoration: none;
+	color: #0d0d0d;
+}
+
+.top {
+	width: 100%;
+}
+
+.form {
+	text-align: center;
+	margin: 0 auto;
+	margin-top: .3rem;
+	width: 90%;
+}
+
+.form input,
+select {
+	width: 100%;
+	padding: 0 5px;
+	font-size: 15px;
+	border: 1px solid #d9d9d9;
+	border-radius: 5px;
+	height: .8rem;
+	margin-bottom: .3rem;
+	touch-action: none;
+	background-color: #fff;
+}
+
+.btn-code {
+	position: absolute;
+	right: .42rem;
+	margin-top: .033rem;
+	width: 30%;
+	font-size: 0.240rem;
+	background-color: #E35C3E;
+	height: 0.72rem;
+	line-height: 0.72rem;
+	text-align: center;
+	color: #000000;
+	border-radius: 0px 5px 5px 0px;
+	border: none;
+}
+
+.btn-code[disabled] {
+	background: #c3c3c3;
+	color: #fff;
+}
+
+.btn-gray {
+	background-color: #e9e9e9;
+}
+
+.cover {
+	display: inline-block;
+}
+
+.tip {
+	margin-top: 10px;
+	font-size: 12px;
+	color: red;
+	line-height: 18px;
+	text-align: left;
+}
+
+.input-spec {
+	position: relative;
+	margin-bottom: 15px;
+	font-size: 15px;
+	margin: 0 auto;
+	width: 90%;
+}
+
+.left {
+	float: left;
+	display: inline-block;
+	line-height: 20px;
+	margin-right: 10px;
+	color: #333;
+}
+
+.right {
+	color: #333;
+	overflow: hidden;
+}
+
+.cover {
+	display: inline-block;
+	padding-right: 20px;
+	padding-left: 10px;
+}
+
+.agreement {
+	/*height: 20px;*/
+	line-height: 20px;
+	font-size: 13px;
+	margin-bottom: 22px;
+	width: 90%;
+	margin: 0 auto;
+}
+
+#agreement-btn {
+	position: relative;
+	top: 1px;
+}
+
+.oringe {
+	color: #f60;
+	text-decoration: none;
+}
+
+.submit-btn {
+	display: block;
+	text-align: center;
+	border-radius: 6px;
+	border: none;
+	font-size: 16px;
+	color: #fff !important;
+	background-color: #f55527;
+	outline: none;
+	box-shadow: 0 0 8px #f55527;
+	height: 44px;
+	line-height: 44px;
+	width: 100%;
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+
+.reg-tip-words {
+	position: relative;
+	padding-left: 18px;
+	width: 90%;
+	margin: 0 auto;
+	padding-bottom: 18px;
+	margin-left: .7rem;
+	/*margin-top: 2rem;*/
+ }
+
+.reg-tip-words img {
+	display: block;
+	width: 14px;
+	position: absolute;
+	left: 0;
+	top: 1px;
+}
+
+.js-active-statement {
+	font-size: 12px;
+}
+
+.title {
+	position: relative;
+	font-size: 20px;
+	color: #333;
+	font-weight: 700;
+	line-height: 26px;
+	text-align: center;
+}
+
+.bonus-list {
+	padding: 20px 50px 0;
+}
+
+.bonus-list img {
+	width: 100%;
+}
+
+.temp-common {
+	position: relative;
+	padding-top: 45px;
+}
+
+.free-list {
+	padding: 15px 15px 0;
+}
+
+.free-list img {
+	display: inline-block;
+	width: 48%;
+}
+
+.input-spec .left {
+	float: left;
+}
+
+.input-spec .right {
+	color: #333;
+    overflow: hidden;
+}
+
+.subtitle {
+	margin-top: 10px;
+	padding: 0 15px;
+	text-align: center;
+	color: #666;
+	font-size: 14px;
+	line-height: 20px;
+}
+
+.course {
+	text-align: center;
+}
+
+.improve-img {
+	display: block;
+	margin-top: 30px;
+	width: 100%;
+}
+
+.course-img {
+	display: inline-block;
+	width: 94%;
+	margin-top: 30px;
+}
+
+.standard-list {
+	margin-top: 10px;
+	padding: 0 15px;
+	overflow: hidden;
+}
+
+.atom {
+	float: left;
+	margin-top: 25px;
+	width: 49%;
+	margin-right: 2%;
+	text-align: center;
+}
+
+.standard-list .right {
+	margin-right: 0;
+}
+
+.standard-list .full {
+	width: 100%;
+}
+
+.standard-list .atom img {
+	width: 70px;
+	height: 62px;
+}
+
+.standard-list .atom p {
+	color: #666;
+	font-size: 14px;
+	line-height: 20px;
+	width: 150px;
+}
+
+.standard-list .full p {
+    width: auto;
+}
+.temp-common-teachers{
+	position: relative;
+	padding-top: 45px;
+	margin-top: 5rem;
+	width: 93%;
+	margin: 0 auto;
+	text-align: center;
+}
+.teachers .teachers-img {
+    display: inline-block;
+    margin-top: 30px;
+    width: 100%;
+    touch-action: none;
+}
+
+.teachers .navtitle {
+    margin-top: 16px;
+    font-size: 17px;
+    font-weight: 700;
+    color: #333;
+    line-height: 20px;
+}
+
+.teachers .teachers-experience {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
+    line-height: 20px;
+}
+
+.effect-list img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 83px;
+}
+
+.fn-pb50 {
+    padding-bottom: 50px;
+}
+
+.temp-common-effect {
+	position: relative;
+	padding-top: 45px;
+	width: 93%;
+	margin: 0 auto;
+}
+
+.effect .effect-list {
+    position: relative;
+    margin-top: 30px;
+}
+
+.effect-list .content {
+    padding-left: 100px;
+}
+
+.effect .effect-list .content .h2 span {
+    color: #f85415;
+}
+
+.effect-list .content .h1 {
+    font-size: 17px;
+    line-height: 20px;
+    color: #333;
+    font-weight: 700;
+}
+
+.effect-list .content .h2 {
+    margin-top: 4px;
+    color: #333;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.effect-list .content .text {
+    margin-top: 10px;
+    color: #666;
+    font-size: 13px;
+    line-height: 18px;
+}
+
+.service .sl-title {
+    position: relative;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.service .sl-title img.first {
+    width: 26px;
+    height: 33px;
+}
+
+.service .sl-title span {
+    display: inline-block;
+    font-size: 17px;
+    line-height: 33px;
+}
+
+.service .sl-text, .registerone-wrapper .service .sl-text {
+    margin-top: 10px;
+    font-size: 13px;
+    line-height: 19px;
+    color: #666;
+}
+
+.service .sl-title img {
+    display: inline-block;
+    width: 33px;
+    height: 33px;
+    margin-right: 9px;
+    vertical-align: top;
+}
+
+.service {
+    padding: 0 30px 30px;
+    background-color: #f8f8f8;
+}
+
+.temp-common-service{
+	position: relative;
+	padding-top: 45px;
+}
+
+.promise-origin {
+    padding: 22px 0;
+    line-height: 1.3;
+    text-align: center;
+    background-color: #666;
+    color: hsla(0,0%,100%,.5);
+    font-size: 12px;
+    margin-bottom: 1rem;
+}
+
+.dock {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+    width: 100%;
+    max-width: 480px;
+    z-index: 6;
+}
+
+.show {
+    display: block;
+}
+
+.dock img.dino {
+    display: block;
+    width: 100%;
+}
+
+.dock .btn-back {
+	position: absolute;
+	width: 94px;
+	height: 35px;
+	right: 13px;
+	top: 70%;
+	transform: translateY(-50%);
+}

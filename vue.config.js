@@ -1,6 +1,6 @@
 module.exports = {
 	baseUrl: "./",
-	productionSourceMap: false,
+	productionSourceMap: false,//屏蔽源码
 	chainWebpack: config => {
 		config.plugins.delete('prefetch')
 	},
